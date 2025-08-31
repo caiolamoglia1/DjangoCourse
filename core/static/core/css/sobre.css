@@ -1,0 +1,348 @@
+/* ==========================================================================
+   SOBRE PAGE - Estilos específicos da página sobre
+   ========================================================================== */
+
+/* Hero da página Sobre */
+.about-hero {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #181a1b 0%, #23272b 100%);
+    border-bottom: 1px solid #333;
+}
+
+.about-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.about-subtitle {
+    font-size: 1.25rem;
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.about-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.stat-item i {
+    font-size: 2.5rem;
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffd700;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Seção de Missão */
+.mission-section {
+    padding: 4rem 0;
+    background: #1a1d21;
+}
+
+.mission-card {
+    background: linear-gradient(135deg, #23272b, #2c3136);
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid #333;
+    height: 100%;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.mission-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+}
+
+.mission-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ffd700, #e0c200);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.mission-icon i {
+    font-size: 1.5rem;
+    color: #1a1d21;
+}
+
+.mission-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffd700;
+    margin-bottom: 1rem;
+}
+
+.mission-card p {
+    color: #b0b0b0;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Seção da Equipe */
+.team-section {
+    padding: 4rem 0;
+    background: #181a1b;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #e0e0e0;
+    margin-bottom: 3rem;
+}
+
+.section-title i {
+    color: #ffd700;
+    margin-right: 0.5rem;
+}
+
+.team-card {
+    background: linear-gradient(135deg, #23272b, #2c3136);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #333;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 2rem;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+}
+
+.team-avatar {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #ffd700, #e0c200);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.team-avatar i {
+    font-size: 2rem;
+    color: #1a1d21;
+}
+
+.team-card h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+}
+
+.team-role {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+}
+
+.team-bio {
+    color: #b0b0b0;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.team-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-link {
+    width: 35px;
+    height: 35px;
+    background: rgba(255, 215, 0, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd700;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.social-link:hover {
+    background: #ffd700;
+    color: #23272b;
+    transform: scale(1.1);
+}
+
+/* Seção de Recursos */
+.resources-section {
+    padding: 4rem 0;
+    background: #1a1d21;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.resource-item {
+    background: linear-gradient(135deg, #23272b, #2c3136);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.resource-item:hover {
+    background: linear-gradient(135deg, #2c3136, #34393f);
+    color: #ffd700;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.1);
+}
+
+.resource-item i:first-child {
+    color: #ffd700;
+    font-size: 1.25rem;
+}
+
+.resource-item i:last-child {
+    margin-left: auto;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.resource-item:hover i:last-child {
+    opacity: 1;
+}
+
+/* Card de Contato */
+.contact-card {
+    background: linear-gradient(135deg, #23272b, #2c3136);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid #333;
+    height: fit-content;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact-header i {
+    font-size: 2rem;
+    color: #ffd700;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.contact-header h4 {
+    color: #e0e0e0;
+    margin: 0;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #b0b0b0;
+    margin-bottom: 0.75rem;
+}
+
+.contact-info i {
+    color: #ffd700;
+    width: 16px;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.social-btn.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+}
+
+.social-btn.linkedin {
+    background: #0077b5;
+    color: white;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+/* Responsive para página Sobre */
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 2rem;
+    }
+
+    .about-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .mission-card,
+    .team-card,
+    .contact-card {
+        margin-bottom: 2rem;
+    }
+
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+}

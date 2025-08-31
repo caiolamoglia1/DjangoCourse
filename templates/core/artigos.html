@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Artigos | DjangoCourse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+
+<body>
+    {% include 'core/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="artigos-hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="hero-content">
+                            <div class="hero-badge">
+                                <i class="fas fa-newspaper"></i>
+                                <span>Conteúdo Atualizado Diariamente</span>
+                            </div>
+                            <h1 class="hero-title">
+                                <span class="text-gradient">Artigos</span><br>
+                                <span class="brand-name">& Insights</span><br>
+                                <span class="text-small">sobre IA</span>
+                            </h1>
+                            <p class="hero-subtitle">
+                                Explore os conteúdos mais relevantes sobre Inteligência Artificial,
+                                tecnologia e tendências do mercado. Artigos curados de fontes confiáveis.
+                            </p>
+                            <div class="hero-stats">
+                                <div class="stat">
+                                    <span class="stat-number">50+</span>
+                                    <span class="stat-label">Artigos</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">10+</span>
+                                    <span class="stat-label">Categorias</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">Daily</span>
+                                    <span class="stat-label">Updates</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="artigos-visual">
+                            <div class="floating-icons">
+                                <div class="icon-card ai">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <div class="icon-card tech">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <div class="icon-card data">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="icon-card innovation">
+                                    <i class="fas fa-lightbulb"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">
+                        <span class="text-gradient">Explore por</span> Categoria
+                    </h2>
+                    <p class="section-subtitle">
+                        Encontre o conteúdo que mais se adequa aos seus interesses
+                    </p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="category-card active">
+                            <div class="category-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>Inteligência Artificial</h4>
+                            <p>Tendências, aplicações e inovações em IA</p>
+                            <div class="category-count">23 artigos</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h4>Mercado Tech</h4>
+                            <p>Análises e insights do mercado de tecnologia</p>
+                            <div class="category-count">12 artigos</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-balance-scale"></i>
+                            </div>
+                            <h4>Ética & Sociedade</h4>
+                            <p>Impactos sociais e éticos da tecnologia</p>
+                            <div class="category-count">8 artigos</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h4>Ferramentas</h4>
+                            <p>Reviews e guias de ferramentas de IA</p>
+                            <div class="category-count">15 artigos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Article Section -->
+        <section class="featured-article-section">
+            <div class="container">
+                <div class="featured-article">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="featured-content">
+                                <div class="featured-badge">
+                                    <i class="fas fa-star"></i>
+                                    <span>Artigo em Destaque</span>
+                                </div>
+                                <h3>Quem controla a inteligência artificial? O poder dos dados e o domínio das big techs
+                                </h3>
+                                <p>Uma análise profunda sobre como as grandes empresas de tecnologia estão moldando o
+                                    futuro da IA através do controle de dados e infraestrutura.</p>
+                                <div class="featured-meta">
+                                    <span class="source">
+                                        <i class="fas fa-external-link-alt"></i>
+                                        cadenaser.com
+                                    </span>
+                                    <span class="reading-time">
+                                        <i class="fas fa-clock"></i>
+                                        8 min de leitura
+                                    </span>
+                                </div>
+                                <a href="https://cadenaser.com" target="_blank" rel="noopener noreferrer"
+                                    class="btn btn-primary">
+                                    <i class="fas fa-arrow-right"></i> Ler Artigo Completo
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="featured-visual">
+                                <div class="featured-image">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles Grid Section -->
+        <section class="articles-grid-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-newspaper"></i> Últimos Artigos
+                    </h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Todos</button>
+                        <button class="filter-btn" data-filter="ia">IA</button>
+                        <button class="filter-btn" data-filter="mercado">Mercado</button>
+                        <button class="filter-btn" data-filter="etica">Ética</button>
+                        <button class="filter-btn" data-filter="ferramentas">Ferramentas</button>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <!-- Article 1 -->
+                    <div class="col-lg-4 col-md-6" data-category="ia">
+                        <article class="modern-article-card" onclick="window.open('https://elpais.com', '_blank')">
+                            <div class="article-image">
+                                <i class="fas fa-robot"></i>
+                                <div class="article-category">IA</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>Podem as máquinas pensar?</h4>
+                                <p>Uma reflexão filosófica e técnica sobre a capacidade de raciocínio das máquinas e o
+                                    teste de Turing moderno.</p>
+                                <div class="article-meta">
+                                    <span class="article-source">
+                                        <i class="fas fa-external-link-alt"></i> elpais.com
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 6 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Article 2 -->
+                    <div class="col-lg-4 col-md-6" data-category="ia">
+                        <article class="modern-article-card" onclick="window.open('https://elpais.com', '_blank')">
+                            <div class="article-image">
+                                <i class="fas fa-brain"></i>
+                                <div class="article-category">IA</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>Compreensão Potemkin: a IA não entende o que escreve</h4>
+                                <p>Análise crítica sobre as limitações da compreensão artificial e a ilusão de
+                                    entendimento dos modelos de linguagem.</p>
+                                <div class="article-meta">
+                                    <span class="article-source">
+                                        <i class="fas fa-external-link-alt"></i> elpais.com
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 10 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Article 3 -->
+                    <div class="col-lg-4 col-md-6" data-category="etica">
+                        <article class="modern-article-card" onclick="window.open('https://cadenaser.com', '_blank')">
+                            <div class="article-image">
+                                <i class="fas fa-balance-scale"></i>
+                                <div class="article-category">Ética</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>Bons e maus usos da IA: a ética da inteligência artificial</h4>
+                                <p>Explorando os dilemas éticos, casos de uso responsáveis e os riscos do
+                                    desenvolvimento descontrolado da IA.</p>
+                                <div class="article-meta">
+                                    <span class="article-source">
+                                        <i class="fas fa-external-link-alt"></i> cadenaser.com
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 12 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Article 4 -->
+                    <div class="col-lg-4 col-md-6" data-category="mercado">
+                        <article class="modern-article-card" onclick="window.open('https://elpais.com', '_blank')">
+                            <div class="article-image">
+                                <i class="fas fa-briefcase"></i>
+                                <div class="article-category">Mercado</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>Inteligência artificial para ajudar o trabalhador</h4>
+                                <p>Como a IA está transformando o ambiente de trabalho, criando novas oportunidades e
+                                    redefinindo profissões.</p>
+                                <div class="article-meta">
+                                    <span class="article-source">
+                                        <i class="fas fa-external-link-alt"></i> elpais.com
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 8 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Article 5 -->
+                    <div class="col-lg-4 col-md-6" data-category="ferramentas">
+                        <article class="modern-article-card"
+                            onclick="window.open('https://huffingtonpost.es', '_blank')">
+                            <div class="article-image">
+                                <i class="fas fa-tools"></i>
+                                <div class="article-category">Ferramentas</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>As melhores ferramentas de IA para gerar textos: ranking e benefícios</h4>
+                                <p>Comparativo completo das principais ferramentas de geração de texto, suas
+                                    funcionalidades e casos de uso.</p>
+                                <div class="article-meta">
+                                    <span class="article-source">
+                                        <i class="fas fa-external-link-alt"></i> huffingtonpost.es
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 15 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Article 6 -->
+                    <div class="col-lg-4 col-md-6" data-category="ia">
+                        <article class="modern-article-card" onclick="window.open('https://cadenaser.com', '_blank')">
+                            <div class="article-image">
+                                <i class="fas fa-user-robot"></i>
+                                <div class="article-category">IA</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>Agentes de Inteligência Artificial: a próxima revolução tecnológica</h4>
+                                <p>Entenda como os agentes autônomos de IA estão mudando a forma como interagimos com a
+                                    tecnologia.</p>
+                                <div class="article-meta">
+                                    <span class="article-source">
+                                        <i class="fas fa-external-link-alt"></i> cadenaser.com
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 9 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Article 7 -->
+                    <div class="col-lg-4 col-md-6" data-category="mercado">
+                        <article class="modern-article-card"
+                            onclick="window.open('https://cincodias.elpais.com', '_blank')">
+                            <div class="article-image">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div class="article-category">Mercado</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>A IA muda o comportamento do consumidor: benefício ou limitação?</h4>
+                                <p>Análise do impacto da inteligência artificial nos hábitos de consumo e nas decisões
+                                    de compra.</p>
+                                <div class="article-meta">
+                                    <span class="article-source">
+                                        <i class="fas fa-external-link-alt"></i> cincodias.elpais.com
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 7 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Article 8 -->
+                    <div class="col-lg-4 col-md-6" data-category="etica">
+                        <article class="modern-article-card" onclick="window.open('https://elpais.com', '_blank')">
+                            <div class="article-image">
+                                <i class="fas fa-heart"></i>
+                                <div class="article-category">Ética</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>Mais eficientes, mas menos felizes: assim a IA nos transforma</h4>
+                                <p>Reflexão sobre o paradoxo da eficiência tecnológica e seu impacto no bem-estar humano
+                                    e satisfação pessoal.</p>
+                                <div class="article-meta">
+                                    <span class="article-source">
+                                        <i class="fas fa-external-link-alt"></i> elpais.com
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 11 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Dynamic Articles from Database -->
+                    {% for article in articles %}
+                    <div class="col-lg-4 col-md-6" data-category="ia">
+                        <article class="modern-article-card">
+                            <div class="article-image">
+                                <i class="fas fa-newspaper"></i>
+                                <div class="article-category">Blog</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>{{ article.title }}</h4>
+                                <p>{{ article.content|truncatewords:20 }}</p>
+                                <div class="article-meta">
+                                    <span class="article-source">
+                                        <i class="fas fa-calendar"></i> {{ article.published_at|date:"d/m/Y" }}
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-user"></i> Admin
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-5">
+                    <button class="btn btn-outline-primary btn-lg">
+                        <i class="fas fa-plus"></i> Carregar Mais Artigos
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="container">
+                <div class="newsletter-content">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <h3>Não perca nenhum insight!</h3>
+                            <p>Receba os melhores artigos sobre IA e tecnologia diretamente no seu email. Newsletter
+                                semanal com conteúdo curado.</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="newsletter-form">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" placeholder="Seu melhor email">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-paper-plane"></i> Inscrever-se
+                                    </button>
+                                </div>
+                                <small class="text-muted mt-2 d-block">
+                                    <i class="fas fa-shield-alt"></i> Seus dados estão seguros. Sem spam.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Filter articles
+                const filter = this.dataset.filter;
+                document.querySelectorAll('[data-category]').forEach(article => {
+                    if (filter === 'all' || article.dataset.category === filter) {
+                        article.style.display = 'block';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Add click effect and analytics tracking
+        document.querySelectorAll('.modern-article-card').forEach(card => {
+            card.addEventListener('click', function (e) {
+                // Add ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.cssText = `
+                    position: absolute;
+                    border-radius: 50%;
+                    background: rgba(255, 215, 0, 0.3);
+                    transform: scale(0);
+                    animation: ripple 0.6s linear;
+                    pointer-events: none;
+                `;
+
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+
+                this.appendChild(ripple);
+
+                // Remove ripple after animation
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+
+                // Optional: Add analytics tracking here
+                console.log('Article clicked:', this.querySelector('h4').textContent);
+            });
+        });
+
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            .modern-article-card {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            /* Hover indicator for external links */
+            .modern-article-card[onclick]:hover {
+                box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+            }
+            
+            .modern-article-card[onclick]:hover .article-source {
+                color: #ffd700;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Newsletter form handler
+        document.querySelector('.newsletter-form .btn').addEventListener('click', function () {
+            const email = document.querySelector('.newsletter-form input[type="email"]').value;
+            if (email) {
+                alert('Obrigado por se inscrever! Em breve você receberá nossos conteúdos no email: ' + email);
+                document.querySelector('.newsletter-form input[type="email"]').value = '';
+            } else {
+                alert('Por favor, insira um email válido.');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<nav>
+    <div class="sidebar-navbar" id="sidebar">
+        <input class="checkbox" type="checkbox" id="nav-toggle" onchange="toggleSidebar()" />
+        <label for="nav-toggle" class="hamburger-lines">
+            <span class="line line1"></span>
+            <span class="line line2"></span>
+            <span class="line line3"></span>
+        </label>
+        <div class="menu-items">
+            <li>
+                <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}>
+                    <i class="fas fa-home"></i>
+                    <span class="menu-text">Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'sobre' %}" {% if request.resolver_match.url_name == 'sobre' %}class="active"{% endif %}>
+                    <i class="fas fa-info-circle"></i>
+                    <span class="menu-text">Sobre</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'artigos' %}" {% if request.resolver_match.url_name == 'artigos' %}class="active"{% endif %}>
+                    <i class="fas fa-newspaper"></i>
+                    <span class="menu-text">Artigos</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'recursos' %}" {% if request.resolver_match.url_name == 'recursos' %}class="active"{% endif %}>
+                    <i class="fas fa-tools"></i>
+                    <span class="menu-text">Recursos</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'contato' %}" {% if request.resolver_match.url_name == 'contato' %}class="active"{% endif %}>
+                    <i class="fas fa-envelope"></i>
+                    <span class="menu-text">Contato</span>
+                </a>
+            </li>
+
+            <!-- Divider line -->
+            <li class="nav-divider"></li>
+
+            {% if user.is_authenticated %}
+            <!-- User is logged in -->
+            <li>
+                <a href="#" class="user-profile-link">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="menu-text">{{ user.first_name|default:user.username }}</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'logout' %}">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span class="menu-text">Sair</span>
+                </a>
+            </li>
+            {% else %}
+            <!-- User is not logged in -->
+            <li>
+                <a href="{% url 'login' %}" {% if request.resolver_match.url_name == 'login' %}class="active"{% endif %}>
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span class="menu-text">Login</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'cadastro' %}" {% if request.resolver_match.url_name == 'cadastro' %}class="active"{% endif %}>
+                    <i class="fas fa-user-plus"></i>
+                    <span class="menu-text">Cadastro</span>
+                </a>
+            </li>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        // Função melhorada para toggle da sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const checkbox = document.getElementById('nav-toggle');
+
+            if (checkbox.checked) {
+                sidebar.classList.add('open');
+                // Força a exibição do texto dos menus
+                const menuTexts = sidebar.querySelectorAll('.menu-text');
+                menuTexts.forEach(text => {
+                    text.style.opacity = '1';
+                });
+            } else {
+                sidebar.classList.remove('open');
+                // Esconde o texto dos menus quando fechado
+                setTimeout(() => {
+                    if (!sidebar.classList.contains('open')) {
+                        const menuTexts = sidebar.querySelectorAll('.menu-text');
+                        menuTexts.forEach(text => {
+                            text.style.opacity = '0';
+                        });
+                    }
+                }, 300);
+            }
+        }
+
+        // Inicialização quando a página carrega
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebar = document.getElementById('sidebar');
+            const checkbox = document.getElementById('nav-toggle');
+
+            // Garantir estado inicial correto
+            if (!checkbox.checked) {
+                sidebar.classList.remove('open');
+                const menuTexts = sidebar.querySelectorAll('.menu-text');
+                menuTexts.forEach(text => {
+                    text.style.opacity = '0';
+                });
+            }
+
+            // Hover effect para mostrar texto
+            sidebar.addEventListener('mouseenter', function () {
+                if (!checkbox.checked) {
+                    const menuTexts = sidebar.querySelectorAll('.menu-text');
+                    menuTexts.forEach(text => {
+                        text.style.opacity = '1';
+                    });
+                }
+            });
+
+            sidebar.addEventListener('mouseleave', function () {
+                if (!checkbox.checked) {
+                    const menuTexts = sidebar.querySelectorAll('.menu-text');
+                    menuTexts.forEach(text => {
+                        text.style.opacity = '0';
+                    });
+                }
+            });
+        });
+    </script>
+</nav>

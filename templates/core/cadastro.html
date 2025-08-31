@@ -1,0 +1,775 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Django Course</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+
+<body>
+    {% include 'core/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="cadastro-hero-section">
+            <div class="hero-background-elements">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
+                <div class="floating-shape shape-4"></div>
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center">
+                        <div class="hero-content">
+                            <div class="hero-badge animate-fade-in">
+                                <i class="fas fa-crown"></i>
+                                <span>Acesso Premium Grátis</span>
+                            </div>
+
+                            <h1 class="hero-title animate-slide-up">
+                                Faça parte da maior <span class="text-gradient">comunidade Django</span> do Brasil
+                            </h1>
+
+                            <p class="hero-subtitle animate-slide-up">
+                                Junte-se a mais de <strong>15.000 desenvolvedores</strong> que já transformaram suas
+                                carreiras
+                                com nossos conteúdos exclusivos, projetos práticos e mentoria especializada.
+                            </p>
+
+                            <div class="hero-stats animate-fade-in">
+                                <div class="stat-item">
+                                    <div class="stat-number">15K+</div>
+                                    <div class="stat-label">Desenvolvedores</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">200+</div>
+                                    <div class="stat-label">Projetos</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">50+</div>
+                                    <div class="stat-label">Horas de Conteúdo</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">98%</div>
+                                    <div class="stat-label">Satisfação</div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Icons -->
+                            <div class="floating-icon" style="top: 15%; left: 10%;">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="floating-icon" style="top: 25%; right: 15%;">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="floating-icon" style="top: 60%; left: 8%;">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <div class="floating-icon" style="top: 70%; right: 12%;">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="floating-icon" style="top: 40%; left: 5%;">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="floating-icon" style="top: 80%; right: 20%;">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration Form Section -->
+        <section class="registration-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="registration-wrapper">
+                            <div class="registration-header text-center">
+                                <div class="progress-indicator">
+                                    <div class="step active" data-step="1">
+                                        <div class="step-number">1</div>
+                                        <div class="step-label">Dados Pessoais</div>
+                                    </div>
+                                    <div class="step" data-step="2">
+                                        <div class="step-number">2</div>
+                                        <div class="step-label">Experiência</div>
+                                    </div>
+                                    <div class="step" data-step="3">
+                                        <div class="step-number">3</div>
+                                        <div class="step-label">Finalização</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="registration-card">
+                                <div class="card-header text-center">
+                                    <h3 class="mb-2">Criar Conta Premium</h3>
+                                    <p class="text-muted">Seja bem-vindo à maior comunidade Django do Brasil</p>
+                                    <div class="social-proof">
+                                        <div class="user-avatars">
+                                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
+                                                alt="User" class="avatar">
+                                            <img src="https://images.unsplash.com/photo-1494790108755-2616b79ba8be?w=40&h=40&fit=crop&crop=face"
+                                                alt="User" class="avatar">
+                                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
+                                                alt="User" class="avatar">
+                                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face"
+                                                alt="User" class="avatar">
+                                            <div class="avatar-count">+15K</div>
+                                        </div>
+                                        <p class="social-text">Pessoas já se cadastraram hoje!</p>
+                                    </div>
+                                </div>
+
+                                <form class="registration-form" id="registrationForm">
+                                    <!-- Step 1: Personal Data -->
+                                    <div class="form-step active" data-step="1">
+                                        <div class="step-title">
+                                            <h4><i class="fas fa-user-circle me-2"></i>Informações Pessoais</h4>
+                                            <p>Vamos começar com seus dados básicos</p>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                    <input type="text" class="form-control" id="firstName"
+                                                        placeholder=" " required>
+                                                    <label for="firstName" class="floating-label">Nome *</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                    <input type="text" class="form-control" id="lastName"
+                                                        placeholder=" " required>
+                                                    <label for="lastName" class="floating-label">Sobrenome *</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                <input type="email" class="form-control" id="email" placeholder=" "
+                                                    required>
+                                                <label for="email" class="floating-label">Email *</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                    <input type="tel" class="form-control" id="phone" placeholder=" ">
+                                                    <label for="phone" class="floating-label">Telefone</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i
+                                                            class="fas fa-calendar"></i></span>
+                                                    <input type="date" class="form-control" id="birthDate">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                    <input type="password" class="form-control" id="password"
+                                                        placeholder=" " required>
+                                                    <label for="password" class="floating-label">Senha *</label>
+                                                    <button type="button" class="btn-toggle-password">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <div class="input-group">
+                                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                    <input type="password" class="form-control" id="confirmPassword"
+                                                        placeholder=" " required>
+                                                    <label for="confirmPassword" class="floating-label">Confirmar Senha
+                                                        *</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 2: Experience -->
+                                    <div class="form-step" data-step="2">
+                                        <div class="step-title">
+                                            <h4><i class="fas fa-code me-2"></i>Experiência em Desenvolvimento</h4>
+                                            <p>Nos conte sobre seu nível e interesses</p>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label">
+                                                <i class="fas fa-chart-line me-2"></i>Qual seu nível de experiência?
+                                            </label>
+                                            <div class="experience-cards">
+                                                <div class="experience-card" data-value="iniciante">
+                                                    <i class="fas fa-seedling"></i>
+                                                    <h5>Iniciante</h5>
+                                                    <p>Estou começando agora</p>
+                                                </div>
+                                                <div class="experience-card" data-value="intermediario">
+                                                    <i class="fas fa-tree"></i>
+                                                    <h5>Intermediário</h5>
+                                                    <p>Já tenho alguns projetos</p>
+                                                </div>
+                                                <div class="experience-card" data-value="avancado">
+                                                    <i class="fas fa-rocket"></i>
+                                                    <h5>Avançado</h5>
+                                                    <p>Trabalho profissionalmente</p>
+                                                </div>
+                                                <div class="experience-card" data-value="expert">
+                                                    <i class="fas fa-crown"></i>
+                                                    <h5>Expert</h5>
+                                                    <p>Sou referência na área</p>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="experience" name="experience" required>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <label class="form-label">
+                                                <i class="fas fa-heart me-2"></i>Áreas de maior interesse
+                                            </label>
+                                            <div class="interests-grid">
+                                                <div class="interest-tag" data-value="web">
+                                                    <i class="fas fa-globe"></i>
+                                                    <span>Desenvolvimento Web</span>
+                                                </div>
+                                                <div class="interest-tag" data-value="api">
+                                                    <i class="fas fa-plug"></i>
+                                                    <span>APIs & Backend</span>
+                                                </div>
+                                                <div class="interest-tag" data-value="frontend">
+                                                    <i class="fas fa-paint-brush"></i>
+                                                    <span>Frontend</span>
+                                                </div>
+                                                <div class="interest-tag" data-value="database">
+                                                    <i class="fas fa-database"></i>
+                                                    <span>Banco de Dados</span>
+                                                </div>
+                                                <div class="interest-tag" data-value="deploy">
+                                                    <i class="fas fa-cloud"></i>
+                                                    <span>Deploy & Cloud</span>
+                                                </div>
+                                                <div class="interest-tag" data-value="mobile">
+                                                    <i class="fas fa-mobile-alt"></i>
+                                                    <span>Mobile</span>
+                                                </div>
+                                                <div class="interest-tag" data-value="ai">
+                                                    <i class="fas fa-robot"></i>
+                                                    <span>IA & Machine Learning</span>
+                                                </div>
+                                                <div class="interest-tag" data-value="freelance">
+                                                    <i class="fas fa-briefcase"></i>
+                                                    <span>Freelance</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="goals" class="form-label">
+                                                <i class="fas fa-target me-2"></i>Quais são seus objetivos? (opcional)
+                                            </label>
+                                            <textarea class="form-control" id="goals" rows="3"
+                                                placeholder="Ex: Quero conseguir meu primeiro emprego como desenvolvedor Django..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <!-- Step 3: Finalization -->
+                                    <div class="form-step" data-step="3">
+                                        <div class="step-title">
+                                            <h4><i class="fas fa-flag-checkered me-2"></i>Finalização</h4>
+                                            <p>Últimos detalhes para criar sua conta</p>
+                                        </div>
+
+                                        <div class="subscription-plan">
+                                            <div class="plan-header">
+                                                <h5><i class="fas fa-crown text-warning me-2"></i>Plano Premium Grátis
+                                                </h5>
+                                                <div class="plan-price">
+                                                    <span class="original-price">R$ 97/mês</span>
+                                                    <span class="current-price">GRÁTIS</span>
+                                                </div>
+                                            </div>
+                                            <ul class="plan-features">
+                                                <li><i class="fas fa-check"></i> Acesso a todos os cursos</li>
+                                                <li><i class="fas fa-check"></i> Projetos práticos exclusivos</li>
+                                                <li><i class="fas fa-check"></i> Comunidade premium</li>
+                                                <li><i class="fas fa-check"></i> Suporte direto com mentores</li>
+                                                <li><i class="fas fa-check"></i> Certificados de conclusão</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="form-checks">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="terms" required>
+                                                <label class="form-check-label" for="terms">
+                                                    Concordo com os <a href="#" class="text-warning">Termos de Uso</a>
+                                                    e <a href="#" class="text-warning">Política de Privacidade</a> *
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="newsletter" checked>
+                                                <label class="form-check-label" for="newsletter">
+                                                    Quero receber dicas exclusivas e novidades por email
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="whatsapp">
+                                                <label class="form-check-label" for="whatsapp">
+                                                    Aceito receber lembretes importantes via WhatsApp
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Navigation Buttons -->
+                                    <div class="form-navigation">
+                                        <button type="button" class="btn btn-secondary" id="prevBtn"
+                                            style="display: none;">
+                                            <i class="fas fa-arrow-left me-2"></i>Anterior
+                                        </button>
+                                        <button type="button" class="btn btn-primary" id="nextBtn">
+                                            Próximo<i class="fas fa-arrow-right ms-2"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn"
+                                            style="display: none;">
+                                            <i class="fas fa-rocket me-2"></i>Criar Minha Conta Premium
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">
+                        <span class="text-gradient">Vantagens</span> de ser membro
+                    </h2>
+                    <p class="section-subtitle">
+                        Descubra todos os benefícios exclusivos para membros cadastrados
+                    </p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <h4>Conteúdo Exclusivo</h4>
+                            <p>Acesso a artigos premium, tutoriais avançados e projetos práticos que não estão
+                                disponíveis publicamente.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Comunidade Ativa</h4>
+                            <p>Participe de discussões, tire dúvidas e networking com outros desenvolvedores Django da
+                                comunidade.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-download"></i>
+                            </div>
+                            <h4>Recursos Grátis</h4>
+                            <p>Download de códigos-fonte, templates, checklists e materiais complementares para seus
+                                projetos.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <h4>Notificações</h4>
+                            <p>Seja o primeiro a saber sobre novos artigos, cursos e atualizações importantes do Django.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h4>Certificados</h4>
+                            <p>Conquiste certificados de conclusão para cursos e projetos práticos realizados na
+                                plataforma.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h4>Suporte Direto</h4>
+                            <p>Suporte prioritário via chat e email para dúvidas técnicas e orientações personalizadas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Multi-step form functionality
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        // Step navigation
+        function showStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.progress-indicator .step').forEach(s => s.classList.remove('active'));
+
+            // Show current step
+            document.querySelector(`[data-step="${step}"]`).classList.add('active');
+            document.querySelector(`.progress-indicator [data-step="${step}"]`).classList.add('active');
+
+            // Update navigation buttons
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            prevBtn.style.display = step > 1 ? 'block' : 'none';
+            nextBtn.style.display = step < totalSteps ? 'block' : 'none';
+            submitBtn.style.display = step === totalSteps ? 'block' : 'none';
+
+            currentStep = step;
+        }
+
+        // Next button
+        document.getElementById('nextBtn').addEventListener('click', function () {
+            if (validateStep(currentStep)) {
+                if (currentStep < totalSteps) {
+                    showStep(currentStep + 1);
+                }
+            }
+        });
+
+        // Previous button
+        document.getElementById('prevBtn').addEventListener('click', function () {
+            if (currentStep > 1) {
+                showStep(currentStep - 1);
+            }
+        });
+
+        // Form validation for each step
+        function validateStep(step) {
+            const currentStepElement = document.querySelector(`[data-step="${step}"]`);
+            const requiredFields = currentStepElement.querySelectorAll('[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('is-invalid');
+                    isValid = false;
+                } else {
+                    field.classList.remove('is-invalid');
+                }
+            });
+
+            // Additional validation for step 1
+            if (step === 1) {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+
+                if (password !== confirmPassword) {
+                    document.getElementById('confirmPassword').classList.add('is-invalid');
+                    showToast('As senhas não coincidem!', 'error');
+                    isValid = false;
+                }
+
+                if (password.length < 6) {
+                    document.getElementById('password').classList.add('is-invalid');
+                    showToast('A senha deve ter pelo menos 6 caracteres!', 'error');
+                    isValid = false;
+                }
+            }
+
+            // Validation for step 2
+            if (step === 2) {
+                const experience = document.getElementById('experience').value;
+                if (!experience) {
+                    showToast('Selecione seu nível de experiência!', 'error');
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
+        // Experience card selection
+        document.querySelectorAll('.experience-card').forEach(card => {
+            card.addEventListener('click', function () {
+                document.querySelectorAll('.experience-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+                document.getElementById('experience').value = this.dataset.value;
+            });
+        });
+
+        // Interest tags selection
+        document.querySelectorAll('.interest-tag').forEach(tag => {
+            tag.addEventListener('click', function () {
+                this.classList.toggle('selected');
+            });
+        });
+
+        // Password strength indicator
+        document.getElementById('password').addEventListener('input', function () {
+            const password = this.value;
+            const strengthBar = document.querySelector('.strength-bar');
+            const strengthText = document.querySelector('.strength-text');
+
+            let score = 0;
+            if (password.length >= 6) score++;
+            if (password.match(/[a-z]/)) score++;
+            if (password.match(/[A-Z]/)) score++;
+            if (password.match(/[0-9]/)) score++;
+            if (password.match(/[^a-zA-Z0-9]/)) score++;
+
+            const strength = ['Muito fraca', 'Fraca', 'Regular', 'Boa', 'Forte'];
+            const colors = ['#ff4757', '#ff6b7a', '#ffa502', '#2ed573', '#2ed573'];
+
+            strengthBar.style.width = (score * 20) + '%';
+            strengthBar.style.backgroundColor = colors[score - 1] || '#ff4757';
+            strengthText.textContent = strength[score - 1] || 'Digite uma senha';
+        });
+
+        // Toggle password visibility
+        document.querySelectorAll('.btn-toggle-password').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const input = this.previousElementSibling.previousElementSibling;
+                const icon = this.querySelector('i');
+
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.replace('fa-eye', 'fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.replace('fa-eye-slash', 'fa-eye');
+                }
+            });
+        });
+
+        // Floating labels
+        document.querySelectorAll('.form-control').forEach(input => {
+            // Function to check if label should be floating
+            function checkFloating() {
+                if (input.value.trim() !== '' || input === document.activeElement) {
+                    input.parentElement.classList.add('focused');
+                } else {
+                    input.parentElement.classList.remove('focused');
+                }
+            }
+
+            input.addEventListener('focus', function () {
+                this.parentElement.classList.add('focused');
+            });
+
+            input.addEventListener('blur', function () {
+                checkFloating();
+            });
+
+            input.addEventListener('input', function () {
+                checkFloating();
+            });
+
+            // Handle autocomplete
+            input.addEventListener('change', function () {
+                checkFloating();
+            });
+
+            // Initial check
+            checkFloating();
+        });
+
+        // Handle any dynamically added inputs
+        const formObserver = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                mutation.addedNodes.forEach(function (node) {
+                    if (node.nodeType === 1) {
+                        const inputs = node.querySelectorAll ? node.querySelectorAll('.form-control') : [];
+                        inputs.forEach(input => {
+                            // Apply floating label logic to new inputs
+                            function checkFloating() {
+                                if (input.value.trim() !== '' || input === document.activeElement) {
+                                    input.parentElement.classList.add('focused');
+                                } else {
+                                    input.parentElement.classList.remove('focused');
+                                }
+                            }
+
+                            input.addEventListener('focus', function () {
+                                this.parentElement.classList.add('focused');
+                            });
+
+                            input.addEventListener('blur', function () {
+                                checkFloating();
+                            });
+
+                            input.addEventListener('input', function () {
+                                checkFloating();
+                            });
+
+                            checkFloating();
+                        });
+                    }
+                });
+            });
+        });
+
+        formObserver.observe(document.body, { childList: true, subtree: true });
+
+        // Form submission
+        document.getElementById('registrationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            if (!validateStep(3)) {
+                return;
+            }
+
+            // Get selected interests
+            const selectedInterests = Array.from(document.querySelectorAll('.interest-tag.selected'))
+                .map(tag => tag.dataset.value);
+
+            // Simulate form submission
+            const btn = document.getElementById('submitBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Criando sua conta...';
+            btn.disabled = true;
+
+            // Add loading animation
+            document.body.classList.add('form-submitting');
+
+            setTimeout(() => {
+                showSuccessModal();
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                document.body.classList.remove('form-submitting');
+            }, 3000);
+        });
+
+        // Success modal
+        function showSuccessModal() {
+            const modal = document.createElement('div');
+            modal.className = 'success-modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="success-animation">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>🎉 Conta criada com sucesso!</h3>
+                    <p>Bem-vindo à maior comunidade Django do Brasil!</p>
+                    <p>Enviamos um email de confirmação para você.</p>
+                    <button class="btn btn-primary" onclick="this.parentElement.parentElement.remove()">
+                        Começar agora!
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            setTimeout(() => modal.classList.add('show'), 100);
+        }
+
+        // Toast notifications
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <i class="fas fa-${type === 'error' ? 'times-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+
+            document.body.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.animate-fade-in, .animate-slide-up').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Floating animation for icons
+            const icons = document.querySelectorAll('.floating-icon');
+            icons.forEach((icon, index) => {
+                icon.style.animationDelay = `${index * 0.5}s`;
+            });
+
+            // Floating shapes animation
+            const shapes = document.querySelectorAll('.floating-shape');
+            shapes.forEach((shape, index) => {
+                shape.style.animationDelay = `${index * 1}s`;
+                shape.style.animationDuration = `${8 + index * 2}s`;
+            });
+        });
+
+        // Phone mask
+        document.getElementById('phone').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+            value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+            e.target.value = value;
+        });
+    </script>
+</body>
+
+</html>

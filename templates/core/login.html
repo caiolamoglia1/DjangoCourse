@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Django Blog</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- CSS personalizado -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/login.css' %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% static 'core/favicon.ico' %}">
+</head>
+
+<body>
+    {% include 'core/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Login Hero Section -->
+        <section class="login-hero">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="hero-content">
+                            <div class="hero-badge animate-fade-in-up">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Acesso Seguro</span>
+                            </div>
+                            <h1 class="login-title animate-fade-in-up delay-100">
+                                <i class="fas fa-sign-in-alt me-3"></i>
+                                Entre na sua <span class="text-gradient">conta</span>
+                            </h1>
+                            <p class="login-subtitle animate-fade-in-up delay-200">
+                                Acesse sua conta para aproveitar todos os recursos exclusivos do Django Blog e continue
+                                sua jornada de aprendizado
+                            </p>
+                            <div class="hero-features animate-fade-in-up delay-300">
+                                <div class="feature-item">
+                                    <i class="fas fa-bookmark"></i>
+                                    <span>Artigos Salvos</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Progresso Pessoal</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-comments"></i>
+                                    <span>Comunidade</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-visual animate-scale-in delay-400">
+                            <div class="floating-elements">
+                                <div class="element element-1">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <div class="element element-2">
+                                    <i class="fab fa-js-square"></i>
+                                </div>
+                                <div class="element element-3">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="element element-4">
+                                    <i class="fab fa-react"></i>
+                                </div>
+                                <div class="element element-5">
+                                    <i class="fab fa-docker"></i>
+                                </div>
+                            </div>
+                            <div class="main-graphic">
+                                <div class="graphic-bg"></div>
+                                <div class="graphic-content">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Form Section -->
+        <section class="login-container">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5 col-md-7">
+                        <div class="login-card animate-scale-in">
+                            <!-- Decorative Elements -->
+                            <div class="card-decoration">
+                                <div class="decoration-circle circle-1"></div>
+                                <div class="decoration-circle circle-2"></div>
+                                <div class="decoration-circle circle-3"></div>
+                            </div>
+
+                            <!-- Card Header -->
+                            <div class="login-header">
+                                <div class="login-icon-container">
+                                    <div class="login-icon animate-pulse">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="icon-glow"></div>
+                                </div>
+                                <h2>Bem-vindo de volta!</h2>
+                                <p>Entre com suas credenciais para continuar sua jornada</p>
+
+                                <!-- Login Stats -->
+                                <div class="login-stats">
+                                    <div class="stat-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>1,500+ membros</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span>200+ cursos</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Messages -->
+                            {% if messages %}
+                            <div class="messages-container">
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    <i
+                                        class="fas fa-{% if message.tags == 'error' %}exclamation-triangle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %} me-2"></i>
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
+                            <!-- Login Form -->
+                            <form method="post" class="login-form" id="loginForm" novalidate>
+                                {% csrf_token %}
+
+                                <div class="form-group">
+                                    <div class="floating-label">
+                                        <i class="field-icon fas fa-user"></i>
+                                        {{ form.username }}
+                                        <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                                        {% if form.username.errors %}
+                                        <div class="field-error">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.username.errors.0 }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="floating-label">
+                                        <i class="field-icon fas fa-lock"></i>
+                                        {{ form.password }}
+                                        <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                                        <button type="button" class="password-toggle" id="togglePassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        {% if form.password.errors %}
+                                        <div class="field-error">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                            {{ form.password.errors.0 }}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="form-options">
+                                    <div class="remember-me">
+                                        {{ form.remember_me }}
+                                        <label for="{{ form.remember_me.id_for_label }}">
+                                            <span class="checkmark"></span>
+                                            {{ form.remember_me.label }}
+                                        </label>
+                                    </div>
+                                    <a href="#" class="forgot-password" data-bs-toggle="modal"
+                                        data-bs-target="#passwordResetModal">
+                                        Esqueceu a senha?
+                                    </a>
+                                </div>
+
+                                <button type="submit" class="btn-login" id="loginBtn">
+                                    <span class="btn-text">
+                                        <i class="fas fa-sign-in-alt me-2"></i>
+                                        Entrar
+                                    </span>
+                                    <div class="button-loader" style="display: none;">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        <span>Conectando...</span>
+                                    </div>
+                                </button>
+                            </form>
+
+                            <!-- Social Login -->
+                            <div class="social-login">
+                                <div class="divider">
+                                    <span>ou continue com</span>
+                                </div>
+
+                                <div class="social-buttons">
+                                    <button class="btn-social google">
+                                        <i class="fab fa-google"></i>
+                                        Google
+                                    </button>
+                                    <button class="btn-social github">
+                                        <i class="fab fa-github"></i>
+                                        GitHub
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Sign Up Link -->
+                            <div class="signup-link">
+                                <p>Não tem uma conta?
+                                    <a href="{% url 'cadastro' %}">Criar conta gratuita</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Features Section -->
+        <section class="login-features">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="features-content">
+                            <h3 class="features-title">
+                                <i class="fas fa-star text-warning me-2"></i>
+                                Por que ter uma conta?
+                            </h3>
+                            <p class="features-subtitle">
+                                Desbloqueie todo o potencial da plataforma com recursos exclusivos
+                            </p>
+
+                            <div class="features-list">
+                                <div class="feature-item animate-fade-in-left">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-bookmark"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>Biblioteca Pessoal</h5>
+                                        <p>Salve e organize seus artigos favoritos para consulta posterior</p>
+                                    </div>
+                                </div>
+
+                                <div class="feature-item animate-fade-in-left delay-100">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>Acompanhe seu Progresso</h5>
+                                        <p>Visualize estatísticas detalhadas do seu aprendizado</p>
+                                    </div>
+                                </div>
+
+                                <div class="feature-item animate-fade-in-left delay-200">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>Comunidade Exclusiva</h5>
+                                        <p>Conecte-se com outros desenvolvedores e compartilhe conhecimento</p>
+                                    </div>
+                                </div>
+
+                                <div class="feature-item animate-fade-in-left delay-300">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-certificate"></i>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h5>Certificados</h5>
+                                        <p>Obtenha certificados de conclusão para seus cursos</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="features-visual">
+                            <div class="dashboard-preview">
+                                <div class="preview-header">
+                                    <div class="preview-dots">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="preview-title">Seu Dashboard</div>
+                                </div>
+                                <div class="preview-content">
+                                    <div class="preview-stats">
+                                        <div class="stat-card">
+                                            <i class="fas fa-book-open"></i>
+                                            <div class="stat-info">
+                                                <span class="stat-number">12</span>
+                                                <span class="stat-label">Cursos</span>
+                                            </div>
+                                        </div>
+                                        <div class="stat-card">
+                                            <i class="fas fa-trophy"></i>
+                                            <div class="stat-info">
+                                                <span class="stat-number">85%</span>
+                                                <span class="stat-label">Progresso</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="preview-chart">
+                                        <div class="chart-bars">
+                                            <div class="bar" style="height: 60%"></div>
+                                            <div class="bar" style="height: 80%"></div>
+                                            <div class="bar" style="height: 45%"></div>
+                                            <div class="bar" style="height: 90%"></div>
+                                            <div class="bar" style="height: 70%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Password Reset Modal -->
+    <div class="modal fade" id="passwordResetModal" tabindex="-1" aria-labelledby="passwordResetModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordResetModalLabel">
+                        <i class="fas fa-key me-2"></i>
+                        Recuperar Senha
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted mb-3">
+                        Digite seu email para receber instruções de recuperação de senha.
+                    </p>
+                    <form id="passwordResetForm">
+                        <div class="form-group mb-3">
+                            <label for="resetEmail" class="form-label">Email</label>
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <input type="email" class="form-control" id="resetEmail" placeholder="seu@email.com"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                Enviar Instruções
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Enhanced Login JavaScript -->
+    <script src="{% static 'core/js/login.js' %}"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Password Toggle
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const password = document.getElementById('password');
+            const icon = this.querySelector('i');
+
+            if (password.type === 'password') {
+                password.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                password.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+
+        // Form Animation
+        document.getElementById('loginForm').addEventListener('submit', function () {
+            const button = this.querySelector('.btn-login');
+            const loader = this.querySelector('.button-loader');
+            const text = button.querySelector('i:not(.fa-spinner)');
+
+            button.disabled = true;
+            text.style.display = 'none';
+            loader.style.display = 'inline-block';
+
+            // Re-enable button after 3 seconds if form doesn't submit
+            setTimeout(() => {
+                button.disabled = false;
+                text.style.display = 'inline-block';
+                loader.style.display = 'none';
+            }, 3000);
+        });
+
+        // Auto-hide alerts
+        setTimeout(function () {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+    </script>
+</body>
+
+</html>

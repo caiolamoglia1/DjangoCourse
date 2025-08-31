@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Recursos | DjangoCourse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+
+<body>
+    {% include 'core/navbar.html' %}
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="resources-hero">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h1 class="resources-title">
+                            <i class="fas fa-tools text-warning"></i>
+                            <span class="text-gradient">Recursos</span> e Materiais
+                        </h1>
+                        <p class="resources-subtitle">
+                            Explore nossa curadoria de ferramentas, documentações, cursos e materiais essenciais para
+                            seu desenvolvimento em Django, Python e Inteligência Artificial.
+                        </p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="resource-stats">
+                            <div class="stat-badge">
+                                <i class="fas fa-bookmark"></i>
+                                <span>20+ Recursos</span>
+                            </div>
+                            <div class="stat-badge">
+                                <i class="fas fa-star"></i>
+                                <span>Curadoria Expert</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section">
+            <div class="container">
+                <h2 class="section-title text-center mb-5">
+                    <i class="fas fa-th-large"></i> Categorias de Conteúdo
+                </h2>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h4>Conceitos sobre IA</h4>
+                            <p>Fundamentos teóricos e práticos de inteligência artificial e machine learning.</p>
+                            <div class="category-badge">5 artigos</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4>IA na Prática</h4>
+                            <p>Implementações reais, tutoriais hands-on e projetos práticos com IA.</p>
+                            <div class="category-badge">8 projetos</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h4>Mercado de Trabalho</h4>
+                            <p>Tendências, oportunidades e insights sobre carreiras em tecnologia e IA.</p>
+                            <div class="category-badge">12 insights</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <h4>Notícias</h4>
+                            <p>Últimas novidades do mundo tech, updates e releases importantes.</p>
+                            <div class="category-badge">15 notícias</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Tutoriais</h4>
+                            <p>Guias passo a passo para dominar Django, Python e ferramentas de IA.</p>
+                            <div class="category-badge">20 tutoriais</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="category-card">
+                            <div class="category-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h4>Código & Exemplos</h4>
+                            <p>Repositórios, snippets e exemplos de código para seus projetos.</p>
+                            <div class="category-badge">30+ exemplos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommended Resources -->
+        <section class="recommended-section">
+            <div class="container">
+                <h2 class="section-title mb-5">
+                    <i class="fas fa-star"></i> Recursos Recomendados
+                </h2>
+                <div class="row g-4">
+                    <div class="col-lg-6">
+                        <div class="resource-card featured">
+                            <div class="resource-header">
+                                <i class="fab fa-python"></i>
+                                <h4>Documentação Django</h4>
+                                <span class="resource-type">Documentação</span>
+                            </div>
+                            <p>Documentação oficial completa do Django em português, essencial para qualquer
+                                desenvolvedor.</p>
+                            <div class="resource-footer">
+                                <div class="resource-meta">
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                    <span class="difficulty">Básico</span>
+                                </div>
+                                <a href="https://docs.djangoproject.com/pt-br/" target="_blank" class="resource-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Acessar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="resource-card featured">
+                            <div class="resource-header">
+                                <i class="fas fa-brain"></i>
+                                <h4>IA Expert Academy</h4>
+                                <span class="resource-type">Blog</span>
+                            </div>
+                            <p>Conteúdo especializado em IA, machine learning e data science com exemplos práticos.</p>
+                            <div class="resource-footer">
+                                <div class="resource-meta">
+                                    <span class="rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </span>
+                                    <span class="difficulty">Intermediário</span>
+                                </div>
+                                <a href="https://iaexpert.academy/blog/" target="_blank" class="resource-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Acessar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="resource-card">
+                            <div class="resource-header">
+                                <i class="fas fa-chart-line"></i>
+                                <h4>Blog Pareto</h4>
+                                <span class="resource-type">Blog</span>
+                            </div>
+                            <p>Insights sobre mercado, tendências e carreira em tecnologia.</p>
+                            <a href="https://blog.pareto.io/" target="_blank" class="resource-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Acessar
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="resource-card">
+                            <div class="resource-header">
+                                <i class="fas fa-robot"></i>
+                                <h4>TensorFlow</h4>
+                                <span class="resource-type">Framework</span>
+                            </div>
+                            <p>Plataforma de machine learning mais usada no mundo para projetos de IA.</p>
+                            <a href="https://www.tensorflow.org/" target="_blank" class="resource-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Acessar
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="resource-card">
+                            <div class="resource-header">
+                                <i class="fas fa-fire"></i>
+                                <h4>PyTorch</h4>
+                                <span class="resource-type">Framework</span>
+                            </div>
+                            <p>Framework de deep learning flexível e intuitivo para pesquisa e produção.</p>
+                            <a href="https://pytorch.org/" target="_blank" class="resource-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Content -->
+        <section class="popular-section">
+            <div class="container">
+                <h2 class="section-title mb-5">
+                    <i class="fas fa-fire"></i> Mais Vistos
+                </h2>
+                <div class="row g-3">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="popular-item">
+                            <div class="popular-icon">
+                                <i class="fas fa-user-robot"></i>
+                            </div>
+                            <div class="popular-content">
+                                <h5>Teste de Turing</h5>
+                                <p>Como funciona e sua importância na IA</p>
+                                <span class="view-count">
+                                    <i class="fas fa-eye"></i> 2.3k visualizações
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="popular-item">
+                            <div class="popular-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="popular-content">
+                                <h5>Redes Neurais</h5>
+                                <p>Tipos e aplicações práticas</p>
+                                <span class="view-count">
+                                    <i class="fas fa-eye"></i> 1.8k visualizações
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="popular-item">
+                            <div class="popular-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <div class="popular-content">
+                                <h5>YOLO Detection</h5>
+                                <p>Detecção de objetos em tempo real</p>
+                                <span class="view-count">
+                                    <i class="fas fa-eye"></i> 1.5k visualizações
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="popular-item">
+                            <div class="popular-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="popular-content">
+                                <h5>IA no Cotidiano</h5>
+                                <p>Exemplos práticos do dia a dia</p>
+                                <span class="view-count">
+                                    <i class="fas fa-eye"></i> 1.2k visualizações
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

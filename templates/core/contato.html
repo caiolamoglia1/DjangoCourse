@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fale Conosco | DjangoCourse</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+
+<body>
+    {% include 'core/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="contato-hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="hero-content">
+                            <div class="hero-badge">
+                                <i class="fas fa-headset"></i>
+                                <span>Suporte 24/7 Disponível</span>
+                            </div>
+                            <h1 class="hero-title">
+                                <span class="text-gradient">Fale</span><br>
+                                <span class="brand-name">Conosco</span><br>
+                                <span class="text-small">estamos aqui</span>
+                            </h1>
+                            <p class="hero-subtitle">
+                                Tem dúvidas, sugestões ou precisa de ajuda? Nossa equipe especializada
+                                está pronta para ajudar você em sua jornada de aprendizado.
+                            </p>
+                            <div class="hero-stats">
+                                <div class="stat">
+                                    <span class="stat-number">&lt;2h</span>
+                                    <span class="stat-label">Tempo Resposta</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">98%</span>
+                                    <span class="stat-label">Satisfação</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">24/7</span>
+                                    <span class="stat-label">Disponível</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="contato-visual">
+                            <div class="floating-contact-icons">
+                                <div class="contact-icon email">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-icon phone">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-icon chat">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="contact-icon support">
+                                    <i class="fas fa-headset"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Methods Section -->
+        <section class="contact-methods-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">
+                        <span class="text-gradient">Como podemos</span> ajudar você?
+                    </h2>
+                    <p class="section-subtitle">
+                        Escolha a forma mais conveniente para entrar em contato conosco
+                    </p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="contact-method-card">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h4>Email</h4>
+                            <p>Envie sua dúvida por email e receba uma resposta detalhada</p>
+                            <div class="method-info">
+                                <strong>contato@djangocourse.com</strong>
+                            </div>
+                            <div class="method-response">
+                                <i class="fas fa-clock"></i> Resposta em até 2 horas
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="contact-method-card">
+                            <div class="method-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4>Chat ao Vivo</h4>
+                            <p>Converse em tempo real com nossos especialistas</p>
+                            <div class="method-info">
+                                <strong>Chat disponível</strong>
+                            </div>
+                            <div class="method-response">
+                                <i class="fas fa-circle text-success"></i> Online agora
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="contact-method-card">
+                            <div class="method-icon">
+                                <i class="fab fa-discord"></i>
+                            </div>
+                            <h4>Discord</h4>
+                            <p>Junte-se à nossa comunidade e tire dúvidas em grupo</p>
+                            <div class="method-info">
+                                <strong>discord.gg/djangocourse</strong>
+                            </div>
+                            <div class="method-response">
+                                <i class="fas fa-users"></i> +1.2k membros
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="contact-method-card">
+                            <div class="method-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <h4>Consultoria</h4>
+                            <p>Agende uma sessão de mentoria personalizada</p>
+                            <div class="method-info">
+                                <strong>Sessões 1:1</strong>
+                            </div>
+                            <div class="method-response">
+                                <i class="fas fa-star"></i> Mentoria especializada
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="contact-form-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="contact-form-container">
+                            <div class="form-header text-center">
+                                <h3>Envie sua mensagem</h3>
+                                <p>Preencha o formulário abaixo e entraremos em contato o mais breve possível</p>
+                            </div>
+                            <form class="contact-form" id="contactForm">
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="nome" placeholder="Seu nome"
+                                                required>
+                                            <label for="nome">
+                                                <i class="fas fa-user"></i> Nome completo
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-floating">
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="seu@email.com" required>
+                                            <label for="email">
+                                                <i class="fas fa-envelope"></i> Email
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="assunto" required>
+                                                <option value="">Selecione o assunto</option>
+                                                <option value="duvida-tecnica">Dúvida Técnica</option>
+                                                <option value="suporte-curso">Suporte ao Curso</option>
+                                                <option value="sugestao">Sugestão</option>
+                                                <option value="parceria">Parceria</option>
+                                                <option value="outros">Outros</option>
+                                            </select>
+                                            <label for="assunto">
+                                                <i class="fas fa-tag"></i> Assunto
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating">
+                                            <textarea class="form-control" id="mensagem"
+                                                placeholder="Digite sua mensagem" style="height: 150px"
+                                                required></textarea>
+                                            <label for="mensagem">
+                                                <i class="fas fa-comment"></i> Mensagem
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="privacidade" required>
+                                            <label class="form-check-label" for="privacidade">
+                                                Concordo com a <a href="#" class="text-warning">Política de
+                                                    Privacidade</a> e autorizo o uso dos meus dados para resposta.
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">
+                                            <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                                        </button>
+                                        <div class="form-note">
+                                            <small class="text-muted">
+                                                <i class="fas fa-shield-alt"></i> Seus dados estão seguros conosco
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">
+                        <span class="text-gradient">Perguntas</span> Frequentes
+                    </h2>
+                    <p class="section-subtitle">
+                        Confira as dúvidas mais comuns de nossos estudantes
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq1">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse1">
+                                        <i class="fas fa-question-circle me-2"></i>
+                                        Como posso acessar os materiais do curso?
+                                    </button>
+                                </h2>
+                                <div id="collapse1" class="accordion-collapse collapse show"
+                                    data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Todos os materiais estão disponíveis na seção "Recursos" do site. Basta fazer
+                                        login com sua conta e acessar o conteúdo gratuitamente.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse2">
+                                        <i class="fas fa-question-circle me-2"></i>
+                                        Qual é o nível de conhecimento necessário?
+                                    </button>
+                                </h2>
+                                <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Nossos cursos começam do básico! Você só precisa ter vontade de aprender.
+                                        Oferecemos conteúdo desde o nível iniciante até avançado.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse3">
+                                        <i class="fas fa-question-circle me-2"></i>
+                                        Vocês oferecem certificados?
+                                    </button>
+                                </h2>
+                                <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Sim! Após completar os projetos e exercícios, você receberá um certificado de
+                                        conclusão para adicionar ao seu portfólio.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faq4">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapse4">
+                                        <i class="fas fa-question-circle me-2"></i>
+                                        Como funciona o suporte técnico?
+                                    </button>
+                                </h2>
+                                <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Oferecemos suporte via email, Discord e chat ao vivo. Nossa equipe responde em
+                                        até 2 horas durante o horário comercial.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Info Section -->
+        <section class="contact-info-section">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h4>Localização</h4>
+                            <p>São Paulo, SP - Brasil<br>Atendimento 100% online</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="info-card">
+                            <div class="info-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>Horário de Atendimento</h4>
+                            <p>Segunda à Sexta: 9h às 18h<br>Sábados: 9h às 14h</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="info-card social-card">
+                            <h4>Conecte-se Conosco</h4>
+                            <p>Siga-nos nas redes sociais</p>
+                            <div class="social-grid">
+                                <a href="#" class="social-item linkedin" title="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="#" class="social-item youtube" title="YouTube">
+                                    <i class="fab fa-youtube"></i>
+                                    <span>YouTube</span>
+                                </a>
+                                <a href="#" class="social-item instagram" title="Instagram">
+                                    <i class="fab fa-instagram"></i>
+                                    <span>Instagram</span>
+                                </a>
+                                <a href="#" class="social-item twitter" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                    <span>Twitter</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Contact form handler
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const assunto = document.getElementById('assunto').value;
+            const mensagem = document.getElementById('mensagem').value;
+
+            // Simple validation
+            if (!nome || !email || !assunto || !mensagem) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            // Simulate form submission
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.innerHTML;
+
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            button.disabled = true;
+
+            setTimeout(() => {
+                alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                this.reset();
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 2000);
+        });
+
+        // Add floating animation to contact icons
+        document.querySelectorAll('.contact-icon').forEach((icon, index) => {
+            icon.style.animationDelay = (index * 0.5) + 's';
+        });
+
+        // Contact method cards interaction
+        document.querySelectorAll('.contact-method-card').forEach(card => {
+            card.addEventListener('click', function () {
+                const method = this.querySelector('h4').textContent;
+                console.log('Contact method selected:', method);
+
+                // Add ripple effect
+                const ripple = document.createElement('div');
+                ripple.classList.add('ripple-effect');
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 1000);
+            });
+        });
+    </script>
+
+    <style>
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.3);
+            transform: scale(0);
+            animation: ripple 1s linear;
+            pointer-events: none;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            margin-left: -50px;
+            margin-top: -50px;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
+
+</html>

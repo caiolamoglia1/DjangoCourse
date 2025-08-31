@@ -1,0 +1,278 @@
+/* ==========================================================================
+   BASE CSS - Estilos globais e componentes básicos
+   ========================================================================== */
+
+/* Reset Global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #181a1b;
+    color: #e0e0e0;
+    font-family: 'Merriweather', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   SIDEBAR NAVBAR - Componente principal de navegação
+   ========================================================================== */
+
+.sidebar-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 100vh;
+    background: #23272b;
+    z-index: 1000;
+    transition: width 0.3s ease;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-navbar:hover {
+    width: 250px;
+}
+
+/* Checkbox invisível para controle */
+.sidebar-navbar .checkbox {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 32px;
+    width: 32px;
+    z-index: 1200;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Hamburger Menu */
+.sidebar-navbar .hamburger-lines {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: 26px;
+    width: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.sidebar-navbar .hamburger-lines .line {
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 10px;
+    background: #ffd700;
+    transition: all 0.4s ease-in-out;
+}
+
+.sidebar-navbar .hamburger-lines .line1 {
+    transform-origin: 0% 0%;
+}
+
+.sidebar-navbar .hamburger-lines .line3 {
+    transform-origin: 0% 100%;
+}
+
+/* Menu Items Container */
+.sidebar-navbar .menu-items {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #23272b;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 80px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.sidebar-navbar .menu-items li {
+    list-style: none;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+/* Menu Links */
+.sidebar-navbar .menu-items a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-navbar .menu-items a i {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+    color: #ffd700;
+    transition: all 0.3s ease;
+    min-width: 20px;
+}
+
+.sidebar-navbar .menu-items a .menu-text {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Hover Effects */
+.sidebar-navbar:hover .menu-items a .menu-text {
+    opacity: 1;
+}
+
+.sidebar-navbar:hover {
+    width: 250px;
+}
+
+.sidebar-navbar .menu-items a:hover {
+    background: linear-gradient(135deg, #ffd700, #e0c200);
+    color: #23272b;
+    font-weight: bold;
+    transform: translateX(5px);
+}
+
+.sidebar-navbar .menu-items a:hover i {
+    color: #23272b;
+    transform: scale(1.1);
+}
+
+/* Active State */
+.sidebar-navbar .menu-items a.active {
+    background: #ffd700;
+    color: #23272b;
+    font-weight: bold;
+}
+
+.sidebar-navbar .menu-items a.active i {
+    color: #23272b;
+}
+
+.sidebar-navbar .menu-items a.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: #23272b;
+}
+
+/* Checkbox States - CORRIGIDO */
+.sidebar-navbar .checkbox:checked~.hamburger-lines .line1 {
+    transform: rotate(45deg);
+}
+
+.sidebar-navbar .checkbox:checked~.hamburger-lines .line2 {
+    transform: scaleY(0);
+}
+
+.sidebar-navbar .checkbox:checked~.hamburger-lines .line3 {
+    transform: rotate(-45deg);
+}
+
+/* Estado Aberto Forçado */
+.sidebar-navbar.open {
+    width: 250px !important;
+}
+
+.sidebar-navbar.open .menu-items a .menu-text {
+    opacity: 1 !important;
+}
+
+/* Animação suave para o texto */
+.sidebar-navbar .menu-items a .menu-text {
+    transition: opacity 0.3s ease;
+}
+
+/* Garantir que o hamburger funcione */
+.sidebar-navbar .hamburger-lines:hover .line {
+    background: #ffffff;
+}
+
+/* Divider */
+.nav-divider {
+    height: 1px;
+    background: #444;
+    margin: 1rem 0;
+    width: 80%;
+    margin-left: 1.5rem;
+}
+
+/* User Profile Styles */
+.user-profile-link {
+    border-top: 1px solid #333;
+    margin-top: 1rem;
+    padding-top: 1rem !important;
+}
+
+/* Main Content Adjustment */
+.main-content {
+    margin-left: 70px;
+    transition: margin-left 0.3s ease;
+    min-height: 100vh;
+    padding: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar-navbar {
+        width: 70px;
+    }
+
+    .sidebar-navbar:hover {
+        width: 70px;
+    }
+
+    .sidebar-navbar.open {
+        width: 250px !important;
+    }
+
+    .main-content {
+        margin-left: 70px;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar-navbar {
+        width: 60px;
+    }
+
+    .main-content {
+        margin-left: 60px;
+    }
+
+    .sidebar-navbar .menu-items a {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .sidebar-navbar .hamburger-lines {
+        left: 15px;
+        top: 15px;
+    }
+
+    .sidebar-navbar .checkbox {
+        left: 15px;
+        top: 15px;
+    }
+}
