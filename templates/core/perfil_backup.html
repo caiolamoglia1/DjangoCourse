@@ -1,0 +1,795 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - Django Course</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+    <link rel="stylesheet" href="{% static 'core/css/perfil.css' %}">
+</head>
+
+<body>
+    <!-- Include Navbar -->
+    {% include 'core/navbar.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="perfil-hero-section">
+            <div class="hero-background-elements">
+                <div class="floating-shape shape-1"></div>
+                <div class="floating-shape shape-2"></div>
+                <div class="floating-shape shape-3"></div>
+                <div class="floating-shape shape-4"></div>
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center">
+                        <div class="hero-content">
+                            <div class="hero-badge animate-fade-in">
+                                <i class="fas fa-user-crown"></i>
+                                <span>Membro Premium</span>
+                            </div>
+
+                            <h1 class="hero-title animate-slide-up">
+                                Bem-vindo de volta, <span class="text-gradient">{{ user.first_name|default:user.username
+                                    }}</span>!
+                            </h1>
+
+                            <p class="hero-subtitle animate-slide-up">
+                                Gerencie suas informações pessoais, visualize seu progresso e customize sua experiência
+                                na maior plataforma Django do Brasil.
+                            </p>
+
+                            <div class="hero-stats animate-fade-in">
+                                <div class="stat-item">
+                                    <div class="stat-number">{{ user.date_joined|date:"d/m/Y" }}</div>
+                                    <div class="stat-label">Membro desde</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">{{ user.last_login|date:"d/m" }}</div>
+                                    <div class="stat-label">Último acesso</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">100%</div>
+                                    <div class="stat-label">Perfil completo</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">Premium</div>
+                                    <div class="stat-label">Status</div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Icons -->
+                            <div class="floating-icon" style="top: 15%; left: 10%;">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="floating-icon" style="top: 25%; right: 15%;">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="floating-icon" style="top: 60%; left: 8%;">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="floating-icon" style="top: 70%; right: 12%;">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="floating-icon" style="top: 40%; left: 5%;">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="floating-icon" style="top: 80%; right: 20%;">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <div class="container">
+                <div class="row">
+                    <!-- Profile Card -->
+                    <div class="col-lg-4 mb-4">
+                        <div class="profile-card">
+                            <div class="profile-avatar">
+                                {% if profile.avatar %}
+                                <div class="avatar-circle">
+                                    <img src="{{ profile.avatar.url }}" alt="Avatar"
+                                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                                </div>
+                                {% else %}
+                                <div class="avatar-circle">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                {% endif %}
+                                <div class="status-indicator"></div>
+                            </div>
+                            <div class="profile-info">
+                                <!-- IMPORTANTE: Não quebrar tags Django no meio. Manter if...endif em uma linha -->
+                                <h3 class="profile-name">{{ user.first_name|default:user.username }}{% if user.last_name %} {{ user.last_name }}{% endif %}</h3>
+                                <p class="profile-email">{{ user.email }}</p>
+                                <div class="profile-badge">
+                                    <i class="fas fa-crown me-1"></i>
+                                    Membro Premium
+                                </div>
+                            </div>
+                            <div class="profile-actions">
+                                <button class="btn btn-warning btn-block mb-2" data-bs-toggle="modal"
+                                    data-bs-target="#editProfileModal">
+                                    <i class="fas fa-edit me-2"></i>
+                                    Editar Perfil
+                                </button>
+                                <button class="btn btn-outline-light btn-block" data-bs-toggle="modal"
+                                    data-bs-target="#avatarModal">
+                                    <i class="fas fa-camera me-2"></i>
+                                    Alterar Foto
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Profile Content -->
+                    <div class="col-lg-8">
+                        <div class="profile-content">
+                            <!-- Tabs Navigation -->
+                            <ul class="nav nav-tabs profile-tabs" id="profileTabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                                        data-bs-target="#overview" type="button" role="tab">
+                                        <i class="fas fa-chart-pie me-2"></i>
+                                        Visão Geral
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="courses-tab" data-bs-toggle="tab"
+                                        data-bs-target="#courses" type="button" role="tab">
+                                        <i class="fas fa-graduation-cap me-2"></i>
+                                        Meus Cursos
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="certificates-tab" data-bs-toggle="tab"
+                                        data-bs-target="#certificates" type="button" role="tab">
+                                        <i class="fas fa-certificate me-2"></i>
+                                        Certificados
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="settings-tab" data-bs-toggle="tab"
+                                        data-bs-target="#settings" type="button" role="tab">
+                                        <i class="fas fa-cog me-2"></i>
+                                        Configurações
+                                    </button>
+                                </li>
+                            </ul>
+
+                            <!-- Tabs Content -->
+                            <div class="tab-content profile-tab-content" id="profileTabsContent">
+                                <!-- Overview Tab -->
+                                <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                                    <div class="overview-content">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-4">
+                                                <div class="overview-card">
+                                                    <div class="card-icon">
+                                                        <i class="fas fa-book-open"></i>
+                                                    </div>
+                                                    <div class="card-content">
+                                                        <h4>12 Cursos</h4>
+                                                        <p>Cursos em andamento</p>
+                                                        <div class="progress-bar">
+                                                            <div class="progress-fill" style="width: 65%"></div>
+                                                        </div>
+                                                        <small>65% de progresso médio</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="overview-card">
+                                                    <div class="card-icon">
+                                                        <i class="fas fa-trophy"></i>
+                                                    </div>
+                                                    <div class="card-content">
+                                                        <h4>8 Certificados</h4>
+                                                        <p>Conquistas obtidas</p>
+                                                        <div class="achievements">
+                                                            <span class="achievement-badge">🥇</span>
+                                                            <span class="achievement-badge">🏆</span>
+                                                            <span class="achievement-badge">⭐</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="overview-card">
+                                                    <div class="card-icon">
+                                                        <i class="fas fa-clock"></i>
+                                                    </div>
+                                                    <div class="card-content">
+                                                        <h4>45h 30m</h4>
+                                                        <p>Tempo de estudo</p>
+                                                        <div class="time-breakdown">
+                                                            <small>Esta semana: 8h 15m</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <div class="overview-card">
+                                                    <div class="card-icon">
+                                                        <i class="fas fa-users"></i>
+                                                    </div>
+                                                    <div class="card-content">
+                                                        <h4>Elite</h4>
+                                                        <p>Ranking na comunidade</p>
+                                                        <div class="ranking-info">
+                                                            <small>Top 15% dos estudantes</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Recent Activity -->
+                                        <div class="recent-activity">
+                                            <h5 class="section-title">
+                                                <i class="fas fa-history me-2"></i>
+                                                Atividade Recente
+                                            </h5>
+                                            <div class="activity-list">
+                                                <div class="activity-item">
+                                                    <div class="activity-icon">
+                                                        <i class="fas fa-play-circle"></i>
+                                                    </div>
+                                                    <div class="activity-content">
+                                                        <h6>Completou a aula "Models Avançados"</h6>
+                                                        <p>Curso: Django para Iniciantes</p>
+                                                        <small>2 horas atrás</small>
+                                                    </div>
+                                                </div>
+                                                <div class="activity-item">
+                                                    <div class="activity-icon">
+                                                        <i class="fas fa-certificate"></i>
+                                                    </div>
+                                                    <div class="activity-content">
+                                                        <h6>Conquistou certificado</h6>
+                                                        <p>Python Fundamentals</p>
+                                                        <small>1 dia atrás</small>
+                                                    </div>
+                                                </div>
+                                                <div class="activity-item">
+                                                    <div class="activity-icon">
+                                                        <i class="fas fa-comment"></i>
+                                                    </div>
+                                                    <div class="activity-content">
+                                                        <h6>Participou de discussão</h6>
+                                                        <p>Fórum: Dúvidas sobre Django ORM</p>
+                                                        <small>3 dias atrás</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Courses Tab -->
+                                <div class="tab-pane fade" id="courses" role="tabpanel">
+                                    <div class="courses-content">
+                                        <div class="courses-filter">
+                                            <h5 class="section-title">
+                                                <i class="fas fa-graduation-cap me-2"></i>
+                                                Meus Cursos
+                                            </h5>
+                                            <div class="filter-buttons">
+                                                <button class="btn btn-sm btn-outline-warning active">Todos</button>
+                                                <button class="btn btn-sm btn-outline-warning">Em Andamento</button>
+                                                <button class="btn btn-sm btn-outline-warning">Concluídos</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="courses-grid">
+                                            <div class="course-card">
+                                                <div class="course-progress">
+                                                    <div class="progress-circle" data-progress="75">
+                                                        <span>75%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="course-content">
+                                                    <h6>Django para Iniciantes</h6>
+                                                    <p>Aprenda os fundamentos do Django</p>
+                                                    <div class="course-meta">
+                                                        <span><i class="fas fa-play-circle me-1"></i>24/32 aulas</span>
+                                                        <span><i class="fas fa-clock me-1"></i>8h 30m</span>
+                                                    </div>
+                                                    <button class="btn btn-warning btn-sm">Continuar</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="course-card">
+                                                <div class="course-progress">
+                                                    <div class="progress-circle completed" data-progress="100">
+                                                        <i class="fas fa-check"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="course-content">
+                                                    <h6>Python Fundamentals</h6>
+                                                    <p>Domine os conceitos básicos do Python</p>
+                                                    <div class="course-meta">
+                                                        <span><i class="fas fa-check-circle me-1"></i>Concluído</span>
+                                                        <span><i class="fas fa-certificate me-1"></i>Certificado</span>
+                                                    </div>
+                                                    <button class="btn btn-success btn-sm">Revisitar</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="course-card">
+                                                <div class="course-progress">
+                                                    <div class="progress-circle" data-progress="45">
+                                                        <span>45%</span>
+                                                    </div>
+                                                </div>
+                                                <div class="course-content">
+                                                    <h6>Django REST Framework</h6>
+                                                    <p>Construa APIs profissionais</p>
+                                                    <div class="course-meta">
+                                                        <span><i class="fas fa-play-circle me-1"></i>12/27 aulas</span>
+                                                        <span><i class="fas fa-clock me-1"></i>15h 45m</span>
+                                                    </div>
+                                                    <button class="btn btn-warning btn-sm">Continuar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Certificates Tab -->
+                                <div class="tab-pane fade" id="certificates" role="tabpanel">
+                                    <div class="certificates-content">
+                                        <h5 class="section-title">
+                                            <i class="fas fa-certificate me-2"></i>
+                                            Meus Certificados
+                                        </h5>
+
+                                        <div class="certificates-grid">
+                                            <div class="certificate-card">
+                                                <div class="certificate-icon">
+                                                    <i class="fas fa-award"></i>
+                                                </div>
+                                                <div class="certificate-content">
+                                                    <h6>Python Fundamentals</h6>
+                                                    <p>Concluído em 15/01/2025</p>
+                                                    <div class="certificate-actions">
+                                                        <button class="btn btn-warning btn-sm">
+                                                            <i class="fas fa-download me-1"></i>
+                                                            Download
+                                                        </button>
+                                                        <button class="btn btn-outline-light btn-sm">
+                                                            <i class="fas fa-share me-1"></i>
+                                                            Compartilhar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="certificate-card">
+                                                <div class="certificate-icon">
+                                                    <i class="fas fa-medal"></i>
+                                                </div>
+                                                <div class="certificate-content">
+                                                    <h6>HTML & CSS Básico</h6>
+                                                    <p>Concluído em 08/01/2025</p>
+                                                    <div class="certificate-actions">
+                                                        <button class="btn btn-warning btn-sm">
+                                                            <i class="fas fa-download me-1"></i>
+                                                            Download
+                                                        </button>
+                                                        <button class="btn btn-outline-light btn-sm">
+                                                            <i class="fas fa-share me-1"></i>
+                                                            Compartilhar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Settings Tab -->
+                                <div class="tab-pane fade" id="settings" role="tabpanel">
+                                    <div class="settings-content">
+                                        <h5 class="section-title">
+                                            <i class="fas fa-cog me-2"></i>
+                                            Configurações da Conta
+                                        </h5>
+
+                                        <div class="settings-sections">
+                                            <div class="settings-section">
+                                                <h6><i class="fas fa-bell me-2"></i>Notificações</h6>
+                                                <div class="setting-item">
+                                                    <div class="setting-info">
+                                                        <strong>Email de novos cursos</strong>
+                                                        <p>Receba notificações sobre novos cursos disponíveis</p>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="emailCourses" checked>
+                                                    </div>
+                                                </div>
+                                                <div class="setting-item">
+                                                    <div class="setting-info">
+                                                        <strong>Lembrete de estudos</strong>
+                                                        <p>Receba lembretes para manter sua rotina de estudos</p>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="studyReminder" checked>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="settings-section">
+                                                <h6><i class="fas fa-shield-alt me-2"></i>Privacidade</h6>
+                                                <div class="setting-item">
+                                                    <div class="setting-info">
+                                                        <strong>Perfil público</strong>
+                                                        <p>Permitir que outros usuários vejam seu perfil</p>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="publicProfile">
+                                                    </div>
+                                                </div>
+                                                <div class="setting-item">
+                                                    <div class="setting-info">
+                                                        <strong>Mostrar progresso</strong>
+                                                        <p>Exibir seu progresso nos cursos para outros usuários</p>
+                                                    </div>
+                                                    <div class="form-check form-switch">
+                                                        <input class="form-check-input" type="checkbox"
+                                                            id="showProgress">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="settings-section">
+                                                <h6><i class="fas fa-key me-2"></i>Segurança</h6>
+                                                <div class="setting-item">
+                                                    <div class="setting-info">
+                                                        <strong>Alterar senha</strong>
+                                                        <p>Atualize sua senha regularmente para maior segurança</p>
+                                                    </div>
+                                                    <button class="btn btn-outline-warning btn-sm">Alterar
+                                                        Senha</button>
+                                                </div>
+                                                <div class="setting-item">
+                                                    <div class="setting-info">
+                                                        <strong>Sessões ativas</strong>
+                                                        <p>Gerencie dispositivos conectados à sua conta</p>
+                                                    </div>
+                                                    <button class="btn btn-outline-light btn-sm">Ver Sessões</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title text-light" id="editProfileModalLabel">
+                        <i class="fas fa-edit me-2"></i>
+                        Editar Perfil
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editProfileForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary text-warning">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <input type="text" class="form-control bg-dark border-secondary text-light"
+                                        placeholder="Primeiro Nome" value="{{ user.first_name }}">
+                                    <label class="floating-label">Primeiro Nome</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary text-warning">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <input type="text" class="form-control bg-dark border-secondary text-light"
+                                        placeholder="Sobrenome" value="{{ user.last_name|default:'' }}">
+                                    <label class="floating-label">Sobrenome</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark border-secondary text-warning">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <input type="email" class="form-control bg-dark border-secondary text-light"
+                                    placeholder="Email" value="{{ user.email }}">
+                                <label class="floating-label">Email</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text bg-dark border-secondary text-warning">
+                                    <i class="fas fa-at"></i>
+                                </span>
+                                <input type="text" class="form-control bg-dark border-secondary text-light"
+                                    placeholder="Nome de usuário" value="{{ user.username }}">
+                                <label class="floating-label">Nome de usuário</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-warning">
+                        <i class="fas fa-save me-2"></i>
+                        Salvar Alterações
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Progress circles animation
+            const progressCircles = document.querySelectorAll('.progress-circle[data-progress]');
+            progressCircles.forEach(circle => {
+                const progress = circle.getAttribute('data-progress');
+                const circumference = 2 * Math.PI * 18; // radius = 18
+                const offset = circumference - (progress / 100) * circumference;
+
+                // Create SVG if not exists
+                if (!circle.querySelector('svg')) {
+                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svg.setAttribute('width', '50');
+                    svg.setAttribute('height', '50');
+
+                    const circleEl = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circleEl.setAttribute('cx', '25');
+                    circleEl.setAttribute('cy', '25');
+                    circleEl.setAttribute('r', '18');
+                    circleEl.setAttribute('fill', 'none');
+                    circleEl.setAttribute('stroke', '#ffc107');
+                    circleEl.setAttribute('stroke-width', '3');
+                    circleEl.setAttribute('stroke-dasharray', circumference);
+                    circleEl.setAttribute('stroke-dashoffset', offset);
+                    circleEl.setAttribute('transform', 'rotate(-90 25 25)');
+
+                    svg.appendChild(circleEl);
+                    circle.appendChild(svg);
+                }
+            });
+
+            // Floating labels functionality for modal
+            const modalInputs = document.querySelectorAll('#editProfileModal input');
+            modalInputs.forEach(input => {
+                const group = input.closest('.input-group');
+                const label = group ? group.querySelector('.floating-label') : null;
+
+                if (label) {
+                    // Check initial state
+                    if (input.value) {
+                        label.classList.add('active');
+                    }
+
+                    // Focus event
+                    input.addEventListener('focus', function () {
+                        label.classList.add('active');
+                    });
+
+                    // Blur event
+                    input.addEventListener('blur', function () {
+                        if (!input.value) {
+                            label.classList.remove('active');
+                        }
+                    });
+
+                    // Input event
+                    input.addEventListener('input', function () {
+                        if (input.value) {
+                            label.classList.add('active');
+                        } else {
+                            label.classList.remove('active');
+                        }
+                    });
+                }
+            });
+
+            // Course filter buttons
+            const filterButtons = document.querySelectorAll('.filter-buttons .btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Tab switching enhancement
+            const tabButtons = document.querySelectorAll('[data-bs-toggle="tab"]');
+            tabButtons.forEach(button => {
+                button.addEventListener('shown.bs.tab', function (e) {
+                    // Add any specific logic for tab switching
+                    console.log('Tab changed to:', e.target.getAttribute('data-bs-target'));
+                });
+            });
+
+            // Avatar preview functionality
+            const avatarInput = document.getElementById('id_avatar');
+            const avatarPreview = document.getElementById('avatar-preview');
+
+            if (avatarInput) {
+                avatarInput.addEventListener('change', function (e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            if (avatarPreview.tagName === 'IMG') {
+                                avatarPreview.src = e.target.result;
+                            } else {
+                                // Replace the div with an img element
+                                const newImg = document.createElement('img');
+                                newImg.src = e.target.result;
+                                newImg.alt = 'Preview do avatar';
+                                newImg.className = 'rounded-circle mb-3';
+                                newImg.style.cssText = 'width: 120px; height: 120px; object-fit: cover;';
+                                newImg.id = 'avatar-preview';
+                                avatarPreview.parentNode.replaceChild(newImg, avatarPreview);
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- CSS adicional para o perfil -->
+    <style>
+        /* Remove problematic animations that hide content */
+        .animate-fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        .animate-slide-up {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    </style>
+
+    <!-- Modal para Upload de Avatar -->
+    <div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="avatarModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="avatarModalLabel">
+                        <i class="fas fa-camera me-2"></i>Alterar Foto de Perfil
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="text-center mb-4">
+                            {% if profile.avatar %}
+                            <img src="{{ profile.avatar.url }}" alt="Avatar atual" class="rounded-circle mb-3"
+                                style="width: 120px; height: 120px; object-fit: cover;" id="avatar-preview">
+                            {% else %}
+                            <div class="rounded-circle bg-gradient-primary d-inline-flex align-items-center justify-content-center mb-3"
+                                style="width: 120px; height: 120px;" id="avatar-preview">
+                                <i class="fas fa-user fa-2x text-white"></i>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ avatar_form.avatar.id_for_label }}" class="form-label">Escolher nova
+                                foto:</label>
+                            {{ avatar_form.avatar }}
+                            <div class="form-text text-muted">
+                                <small>Formatos aceitos: JPG, PNG, GIF. Tamanho máximo: 5MB.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-secondary">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" name="avatar_upload" class="btn btn-primary">
+                            <i class="fas fa-upload me-2"></i>Salvar Foto
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Edição de Perfil -->
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content bg-dark text-light">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="editProfileModalLabel">
+                        <i class="fas fa-edit me-2"></i>Editar Perfil
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="floating-label-group mb-3">
+                                    {{ profile_form.first_name }}
+                                    <label for="{{ profile_form.first_name.id_for_label }}">{{
+                                        profile_form.first_name.label }}</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="floating-label-group mb-3">
+                                    {{ profile_form.last_name }}
+                                    <label for="{{ profile_form.last_name.id_for_label }}">{{
+                                        profile_form.last_name.label }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="floating-label-group mb-3">
+                            {{ profile_form.email }}
+                            <label for="{{ profile_form.email.id_for_label }}">{{ profile_form.email.label }}</label>
+                        </div>
+
+                        <div class="floating-label-group mb-3">
+                            {{ profile_form.bio }}
+                            <label for="{{ profile_form.bio.id_for_label }}">{{ profile_form.bio.label }}</label>
+                        </div>
+
+                        <div class="floating-label-group mb-3">
+                            {{ profile_form.location }}
+                            <label for="{{ profile_form.location.id_for_label }}">{{ profile_form.location.label
+                                }}</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-secondary">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" name="profile_update" class="btn btn-primary">
+                            <i class="fas fa-save me-2"></i>Salvar Alterações
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

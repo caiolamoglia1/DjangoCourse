@@ -1,0 +1,99 @@
+/* Logo Styles for Navbar */
+.logo-section {
+    padding: 15px 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+}
+
+.logo-link {
+    display: block;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.logo-full {
+    display: block;
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    margin: 0 auto;
+    transition: opacity 0.3s ease;
+}
+
+.logo-icon {
+    display: none;
+    width: 35px;
+    height: 35px;
+    margin: 0 auto;
+    transition: opacity 0.3s ease;
+}
+
+/* Logo behavior when sidebar is closed */
+.sidebar-navbar:not(.open) .logo-full {
+    display: none;
+}
+
+.sidebar-navbar:not(.open) .logo-icon {
+    display: block;
+}
+
+/* Logo behavior when sidebar is open */
+.sidebar-navbar.open .logo-full {
+    display: block;
+}
+
+.sidebar-navbar.open .logo-icon {
+    display: none;
+}
+
+/* Animation for logo transition */
+.logo-full,
+.logo-icon {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .logo-section {
+        padding: 10px;
+    }
+
+    .logo-full {
+        max-width: 100px;
+    }
+
+    .logo-icon {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+/* Logo hover effects */
+.logo-link:hover .logo-full,
+.logo-link:hover .logo-icon {
+    filter: brightness(1.1) saturate(1.2);
+    transform: scale(1.02);
+}
+
+/* Smooth transitions */
+.logo-full,
+.logo-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}

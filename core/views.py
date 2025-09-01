@@ -4,15 +4,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.db import transaction
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
-from .forms import CustomLoginForm, CustomUserRegistrationForm
+from .forms import AvatarUploadForm, CustomLoginForm, CustomUserRegistrationForm, UserProfileForm
 from .models import Article
 
 
 # Página inicial (home)
 def home_page(request):
-    return render(request, "core/home_page.html")
+    return render(request, "core/home.html")
 
 
 # Página de artigos
@@ -54,17 +55,15 @@ def cadastro(request):
                     validate_password(password)
 
                     # Criar usuário
-                    user = form.save()
+                    form.save()
 
                     messages.success(
                         request,
-                        f"Conta criada com sucesso! Bem-vindo, "
-                        f"{user.first_name or user.username}! 🎉",
+                        "Conta criada com sucesso! Agora faça login para continuar.",
                     )
 
-                    # Fazer login automático
-                    login(request, user)
-                    return redirect("home")
+                    # Redirecionar para login
+                    return redirect("login")
 
             except ValidationError as e:
                 messages.error(request, f'Erro na senha: {", ".join(e.messages)}')
@@ -118,10 +117,93 @@ def login_page(request):
     return render(request, "core/login.html", context)
 
 
+# Página de perfil
+@login_required
+def perfil(request):
+    # Obter ou criar perfil do usuário
+    from .models import UserProfile
+
+    profile, created = UserProfile.objects.get_or_create(user=request.user)
+
+    # Formulários
+    avatar_form = AvatarUploadForm(instance=profile)
+    profile_form = UserProfileForm(instance=profile, user=request.user)
+
+    if request.method == "POST":
+        print("=" * 50)
+        print("POST REQUEST DEBUGGING")
+        print("=" * 50)
+        print(f"POST keys: {list(request.POST.keys())}")
+        print(f"FILES keys: {list(request.FILES.keys())}")
+        print(f"avatar_upload in POST: {'avatar_upload' in request.POST}")
+        print(f"profile_update in POST: {'profile_update' in request.POST}")
+        print("=" * 50)
+
+        if "avatar_upload" in request.POST:
+            print("🔄 PROCESSING AVATAR UPLOAD")
+            avatar_form = AvatarUploadForm(request.POST, request.FILES, instance=profile)
+            print(f"📁 Files in request: {request.FILES}")
+            print(f"✅ Form is valid: {avatar_form.is_valid()}")
+
+            if avatar_form.is_valid():
+                print("💾 Saving avatar...")
+                old_avatar = profile.avatar
+                avatar_form.save()
+                print(f"🖼️ Old avatar: {old_avatar}")
+                print(f"🖼️ New avatar: {profile.avatar}")
+                messages.success(request, "Avatar atualizado com sucesso!")
+                return redirect("perfil")
+            else:
+                print(f"❌ Avatar form errors: {avatar_form.errors}")
+                for error in avatar_form.non_field_errors():
+                    messages.error(request, error)
+                if avatar_form.errors.get("avatar"):
+                    messages.error(request, avatar_form.errors["avatar"][0])
+
+        elif "profile_update" in request.POST:
+            print("Processing profile update...")
+            profile_form = UserProfileForm(request.POST, instance=profile, user=request.user)
+            print(f"Profile form is valid: {profile_form.is_valid()}")
+
+            if profile_form.is_valid():
+                profile_form.save()
+                messages.success(request, "Perfil atualizado com sucesso!")
+                return redirect("perfil")
+            else:
+                print(f"Profile form errors: {profile_form.errors}")
+                for field, errors in profile_form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"{profile_form.fields[field].label}: {error}")
+
+        else:
+            print("No recognized form action found!")
+            print("Available keys in POST:", list(request.POST.keys()))
+
+    context = {
+        "user": request.user,
+        "profile": profile,
+        "avatar_form": avatar_form,
+        "profile_form": profile_form,
+    }
+    return render(request, "core/perfil.html", context)
+
+
+# Simple avatar test view
+@login_required
+def avatar_test(request):
+    if request.method == "POST":
+        print("🧪 AVATAR TEST - POST REQUEST")
+        print(f"POST keys: {list(request.POST.keys())}")
+        print(f"FILES keys: {list(request.FILES.keys())}")
+        return HttpResponse("Test complete - check terminal output")
+
+    return render(request, "core/avatar_test.html")
+
+
 # Logout
 @login_required
 def logout_page(request):
     username = request.user.username
     logout(request)
     messages.success(request, f"Até logo, {username}! Você foi desconectado com sucesso!")
-    return redirect("home")
+    return redirect("login")

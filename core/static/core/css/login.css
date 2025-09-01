@@ -2,6 +2,39 @@
    LOGIN PAGE - Estilos específicos da página de login (REORGANIZADO)
    ========================================================================== */
 
+/* Header simples para login */
+.login-header {
+    background: var(--dark-bg, #212529);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 1000;
+}
+
+.login-header .logo-link {
+    text-decoration: none;
+}
+
+.login-header .logo-text {
+    color: var(--light-text, #ffffff);
+    font-weight: 700;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.login-header .btn-outline-warning {
+    border: 2px solid var(--gold, #ffc107);
+    color: var(--gold, #ffc107);
+    background: transparent;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.login-header .btn-outline-warning:hover {
+    background: var(--gold, #ffc107);
+    color: var(--dark-bg, #212529);
+    transform: translateY(-1px);
+}
+
 /* Reset específico para página de login */
 .login-page {
     position: relative;
@@ -58,7 +91,7 @@
 
 /* Hero da página Login */
 .login-hero {
-    padding: 4rem 0;
+    padding: 2rem 0;
     background: linear-gradient(135deg, #181a1b 0%, #23272b 100%);
     border-bottom: 1px solid #333;
     position: relative;

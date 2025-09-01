@@ -1,23 +1,13 @@
 <!-- prettier-ignore -->
-{% load static %}
 <nav>
     <div class="sidebar-navbar" id="sidebar">
-        <!-- Logo Section -->
-        <div class="logo-section">
-            <a href="{% url 'home' %}" class="logo-link">
-                <img src="{% static 'core/images/logo.svg' %}" alt="Django Blog" class="logo-full" id="logo-full">
-                <img src="{% static 'core/images/logo-icon.svg' %}" alt="Django Blog" class="logo-icon" id="logo-icon">
-            </a>
-        </div>
-
         <input class="checkbox" type="checkbox" id="nav-toggle" onchange="toggleSidebar()" />
         <label for="nav-toggle" class="hamburger-lines">
             <span class="line line1"></span>
             <span class="line line2"></span>
             <span class="line line3"></span>
         </label>
-
-        <ul class="menu-items">
+        <div class="menu-items">
             <!-- prettier-ignore -->
             <li>
                 <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="active" {% endif %}>
@@ -54,15 +44,15 @@
                 </a>
             </li>
 
+            <!-- Divider line -->
             <li class="nav-divider"></li>
 
             {% if user.is_authenticated %}
             <!-- User is logged in -->
-            <!-- prettier-ignore -->
             <li>
-                <a href="{% url 'perfil' %}" {% if request.resolver_match.url_name == 'perfil' %}class="active" {% endif %}>
+                <a href="#" class="user-profile-link">
                     <i class="fas fa-user-circle"></i>
-                    <span class="menu-text">Meu Perfil</span>
+                    <span class="menu-text">{{ user.first_name|default:user.username }}</span>
                 </a>
             </li>
             <li>
@@ -88,30 +78,29 @@
                 </a>
             </li>
             {% endif %}
-        </ul>
+        </div>
     </div>
 
     <script>
+        // Função melhorada para toggle da sidebar
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const checkbox = document.getElementById('nav-toggle');
-            const logoFull = document.getElementById('logo-full');
-            const logoIcon = document.getElementById('logo-icon');
 
             if (checkbox.checked) {
                 sidebar.classList.add('open');
-                logoFull.style.display = 'block';
-                logoIcon.style.display = 'none';
-                sidebar.querySelectorAll('.menu-text').forEach(text => {
+                // Força a exibição do texto dos menus
+                const menuTexts = sidebar.querySelectorAll('.menu-text');
+                menuTexts.forEach(text => {
                     text.style.opacity = '1';
                 });
             } else {
                 sidebar.classList.remove('open');
-                logoFull.style.display = 'none';
-                logoIcon.style.display = 'block';
+                // Esconde o texto dos menus quando fechado
                 setTimeout(() => {
                     if (!sidebar.classList.contains('open')) {
-                        sidebar.querySelectorAll('.menu-text').forEach(text => {
+                        const menuTexts = sidebar.querySelectorAll('.menu-text');
+                        menuTexts.forEach(text => {
                             text.style.opacity = '0';
                         });
                     }
@@ -119,24 +108,25 @@
             }
         }
 
+        // Inicialização quando a página carrega
         document.addEventListener('DOMContentLoaded', function () {
             const sidebar = document.getElementById('sidebar');
             const checkbox = document.getElementById('nav-toggle');
-            const logoFull = document.getElementById('logo-full');
-            const logoIcon = document.getElementById('logo-icon');
 
+            // Garantir estado inicial correto
             if (!checkbox.checked) {
                 sidebar.classList.remove('open');
-                logoFull.style.display = 'none';
-                logoIcon.style.display = 'block';
-                sidebar.querySelectorAll('.menu-text').forEach(text => {
+                const menuTexts = sidebar.querySelectorAll('.menu-text');
+                menuTexts.forEach(text => {
                     text.style.opacity = '0';
                 });
             }
 
+            // Hover effect para mostrar texto
             sidebar.addEventListener('mouseenter', function () {
                 if (!checkbox.checked) {
-                    sidebar.querySelectorAll('.menu-text').forEach(text => {
+                    const menuTexts = sidebar.querySelectorAll('.menu-text');
+                    menuTexts.forEach(text => {
                         text.style.opacity = '1';
                     });
                 }
@@ -144,7 +134,8 @@
 
             sidebar.addEventListener('mouseleave', function () {
                 if (!checkbox.checked) {
-                    sidebar.querySelectorAll('.menu-text').forEach(text => {
+                    const menuTexts = sidebar.querySelectorAll('.menu-text');
+                    menuTexts.forEach(text => {
                         text.style.opacity = '0';
                     });
                 }

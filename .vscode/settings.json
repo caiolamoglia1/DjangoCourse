@@ -2,5 +2,24 @@
     "python.pythonPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
     "editor.formatOnSave": true,
     "python.formatting.provider": "black",
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    // Django Template Settings
+    "files.associations": {
+        "*.html": "django-html"
+    },
+    "[html]": {
+        "editor.formatOnSave": false
+    },
+    "[django-html]": {
+        "editor.formatOnSave": false,
+        "editor.defaultFormatter": null
+    },
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "prettier.disableLanguages": [
+        "django-html"
+    ],
+    "html.format.enable": false,
+    "html.format.wrapAttributes": "preserve"
 }

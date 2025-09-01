@@ -5,28 +5,311 @@
     {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Artigos | DjangoCourse</title>
-    <!-- Bootstrap Dark Theme -->
+    <title>Home | DjangoCourse</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'core/style.css' %}">
 </head>
 
 <body>
     {% include 'core/navbar.html' %}
 
-    <div class="container">
-        <h1 class="mb-4">Artigos</h1>
-        <!-- Articles section removed -->
-    </div>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row align-items-center min-vh-100">
+                    <div class="col-lg-8">
+                        <div class="hero-content">
+                            <div class="hero-badge">
+                                <i class="fas fa-rocket"></i>
+                                <span>Novo Curso Disponível!</span>
+                            </div>
+                            <h1 class="hero-title">
+                                <span class="text-gradient">Domine</span><br>
+                                <span class="brand-name">Django & IA</span><br>
+                                <span class="text-small">em 2025</span>
+                            </h1>
+                            <p class="hero-subtitle">
+                                Aprenda Django, Python e Inteligência Artificial com conteúdos práticos,
+                                artigos e tutoriais atualizados. Sua jornada tech começa aqui.
+                            </p>
+                            <div class="hero-stats">
+                                <div class="stat">
+                                    <span class="stat-number">1000+</span>
+                                    <span class="stat-label">Estudantes</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">50+</span>
+                                    <span class="stat-label">Artigos</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-number">24/7</span>
+                                    <span class="stat-label">Suporte</span>
+                                </div>
+                            </div>
+                            <div class="hero-buttons">
+                                <a href="{% url 'artigos' %}" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-rocket"></i> Começar Agora
+                                </a>
+                                <a href="{% url 'sobre' %}" class="btn btn-outline-light btn-lg">
+                                    <i class="fas fa-play"></i> Assistir Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="hero-visual">
+                            <div class="floating-cards">
+                                <div class="tech-card python">
+                                    <i class="fab fa-python"></i>
+                                    <span>Python</span>
+                                </div>
+                                <div class="tech-card django">
+                                    <i class="fas fa-server"></i>
+                                    <span>Django</span>
+                                </div>
+                                <div class="tech-card ai">
+                                    <i class="fas fa-brain"></i>
+                                    <span>AI/ML</span>
+                                </div>
+                                <div class="tech-card data">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Data</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer mt-5">
-        <div class="container">
-            <span>&copy; 2025 DjangoCourse. Todos os direitos reservados.</span>
-        </div>
-    </footer>
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">
+                        <span class="text-gradient">Por que escolher</span> o DjangoCourse?
+                    </h2>
+                    <p class="section-subtitle">
+                        Metodologia comprovada, conteúdo atualizado e suporte especializado
+                    </p>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h4>Aprendizado Prático</h4>
+                            <p>Projetos reais, exercícios hands-on e exemplos do mercado de trabalho.</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check"></i> Projetos completos</li>
+                                <li><i class="fas fa-check"></i> Código no GitHub</li>
+                                <li><i class="fas fa-check"></i> Deploy real</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-rocket"></i>
+                            </div>
+                            <h4>Conteúdo Atualizado</h4>
+                            <p>Sempre em dia com as últimas versões e tendências do mercado tech.</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check"></i> Django 5.x</li>
+                                <li><i class="fas fa-check"></i> Python 3.12+</li>
+                                <li><i class="fas fa-check"></i> IA Generativa</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Comunidade Ativa</h4>
+                            <p>Faça parte de uma comunidade engajada de desenvolvedores e entusiastas.</p>
+                            <ul class="feature-list">
+                                <li><i class="fas fa-check"></i> Discord ativo</li>
+                                <li><i class="fas fa-check"></i> Mentorias</li>
+                                <li><i class="fas fa-check"></i> Networking</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Latest Articles Section -->
+        <section class="articles-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <i class="fas fa-newspaper"></i> Últimos Artigos
+                    </h2>
+                    <a href="{% url 'artigos' %}" class="btn btn-outline-primary">
+                        Ver Todos <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <article class="article-card">
+                            <div class="article-image">
+                                <i class="fas fa-brain"></i>
+                                <div class="article-category">IA</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>Como a IA Generativa está Revolucionando o Desenvolvimento</h4>
+                                <p>Explore as principais ferramentas de IA que estão transformando a forma como criamos
+                                    software...</p>
+                                <div class="article-meta">
+                                    <span class="article-date">
+                                        <i class="fas fa-calendar"></i> 25 Ago 2025
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 5 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <article class="article-card">
+                            <div class="article-image">
+                                <i class="fab fa-python"></i>
+                                <div class="article-category">Django</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>Django 5.0: Novidades e Melhorias</h4>
+                                <p>Descubra as principais funcionalidades da versão mais recente do Django...</p>
+                                <div class="article-meta">
+                                    <span class="article-date">
+                                        <i class="fas fa-calendar"></i> 20 Ago 2025
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 8 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <article class="article-card">
+                            <div class="article-image">
+                                <i class="fas fa-chart-line"></i>
+                                <div class="article-category">Carreira</div>
+                            </div>
+                            <div class="article-content">
+                                <h4>Mercado de Trabalho em Tech 2025</h4>
+                                <p>Análise completa das tendências e oportunidades no mercado de tecnologia...</p>
+                                <div class="article-meta">
+                                    <span class="article-date">
+                                        <i class="fas fa-calendar"></i> 15 Ago 2025
+                                    </span>
+                                    <span class="article-time">
+                                        <i class="fas fa-clock"></i> 12 min
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Path Section -->
+        <section class="learning-path-section">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">
+                        <span class="text-gradient">Trilha de</span> Aprendizado
+                    </h2>
+                    <p class="section-subtitle">
+                        Siga nosso caminho estruturado do básico ao avançado
+                    </p>
+                </div>
+                <div class="learning-path">
+                    <div class="path-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Python Básico</h4>
+                            <p>Fundamentos da linguagem, sintaxe e paradigmas</p>
+                            <div class="step-duration">4 semanas</div>
+                        </div>
+                    </div>
+                    <div class="path-connector"></div>
+                    <div class="path-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Django Framework</h4>
+                            <p>Desenvolvimento web completo com Django</p>
+                            <div class="step-duration">6 semanas</div>
+                        </div>
+                    </div>
+                    <div class="path-connector"></div>
+                    <div class="path-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Inteligência Artificial</h4>
+                            <p>Machine Learning e Deep Learning na prática</p>
+                            <div class="step-duration">8 semanas</div>
+                        </div>
+                    </div>
+                    <div class="path-connector"></div>
+                    <div class="path-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Projeto Final</h4>
+                            <p>Aplicação completa Django + IA</p>
+                            <div class="step-duration">4 semanas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content text-center">
+                    <h2 class="cta-title">
+                        Pronto para <span class="text-gradient">transformar</span> sua carreira?
+                    </h2>
+                    <p class="cta-subtitle">
+                        Junte-se a milhares de desenvolvedores que já estão construindo o futuro com Django e IA
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="{% url 'artigos' %}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-rocket"></i> Começar Agora
+                        </a>
+                        <a href="{% url 'contato' %}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-comments"></i> Falar com Expert
+                        </a>
+                    </div>
+                    <div class="cta-features">
+                        <div class="cta-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>100% Gratuito</span>
+                        </div>
+                        <div class="cta-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Sem Compromisso</span>
+                        </div>
+                        <div class="cta-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Suporte 24/7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 
+from .models import UserProfile
+
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(
@@ -59,19 +61,25 @@ class CustomUserRegistrationForm(forms.ModelForm):
         widget=forms.PasswordInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Digite uma senha segura",
+                "placeholder": " ",  # Espaço em branco para floating labels
+                "autocomplete": "new-password",
+                "required": True,
             }
         ),
         label="Senha",
+        required=True,
     )
     password_confirm = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "Confirme sua senha",
+                "placeholder": " ",  # Espaço em branco para floating labels
+                "autocomplete": "new-password",
+                "required": True,
             }
         ),
         label="Confirmar Senha",
+        required=True,
     )
 
     class Meta:
@@ -81,25 +89,33 @@ class CustomUserRegistrationForm(forms.ModelForm):
             "username": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Escolha um nome de usuário",
+                    "placeholder": " ",  # Espaço em branco para floating labels
+                    "autocomplete": "username",
+                    "required": True,
                 }
             ),
             "email": forms.EmailInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Digite seu email",
+                    "placeholder": " ",  # Espaço em branco para floating labels
+                    "autocomplete": "email",
+                    "required": True,
                 }
             ),
             "first_name": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Seu primeiro nome",
+                    "placeholder": " ",  # Espaço em branco para floating labels
+                    "autocomplete": "given-name",
+                    "required": True,
                 }
             ),
             "last_name": forms.TextInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Seu sobrenome",
+                    "placeholder": " ",  # Espaço em branco para floating labels
+                    "autocomplete": "family-name",
+                    "required": True,
                 }
             ),
         }
@@ -131,3 +147,89 @@ class CustomUserRegistrationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class AvatarUploadForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ["avatar"]
+        widgets = {
+            "avatar": forms.FileInput(
+                attrs={
+                    "class": "form-control",
+                    "accept": "image/*",
+                    "id": "avatar-upload",
+                    "name": "avatar",
+                }
+            )
+        }
+
+    def clean_avatar(self):
+        avatar = self.cleaned_data.get("avatar")
+        if avatar:
+            if avatar.size > 5 * 1024 * 1024:  # 5MB
+                raise forms.ValidationError("A imagem deve ter no máximo 5MB.")
+
+            # Verificar se é uma imagem válida
+            try:
+                from PIL import Image
+
+                img = Image.open(avatar)
+                img.verify()
+                # Reset file pointer after verify
+                avatar.seek(0)
+            except Exception as e:
+                print(f"❌ Image validation error: {e}")
+                raise forms.ValidationError("Arquivo deve ser uma imagem válida.") from e
+
+        return avatar
+
+
+class UserProfileForm(forms.ModelForm):
+    first_name = forms.CharField(
+        max_length=30,
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": " "}),
+        label="Nome",
+    )
+
+    last_name = forms.CharField(
+        max_length=30,
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": " "}),
+        label="Sobrenome",
+    )
+
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": " "}), label="Email"
+    )
+
+    class Meta:
+        model = UserProfile
+        fields = ["bio", "location"]
+        widgets = {
+            "bio": forms.Textarea(attrs={"class": "form-control", "rows": 4, "placeholder": " "}),
+            "location": forms.TextInput(attrs={"class": "form-control", "placeholder": " "}),
+        }
+        labels = {"bio": "Biografia", "location": "Localização"}
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop("user", None)
+        super().__init__(*args, **kwargs)
+
+        if user:
+            self.fields["first_name"].initial = user.first_name
+            self.fields["last_name"].initial = user.last_name
+            self.fields["email"].initial = user.email
+
+    def save(self, commit=True):
+        profile = super().save(commit=False)
+
+        if commit:
+            # Atualizar dados do usuário também
+            user = profile.user
+            user.first_name = self.cleaned_data["first_name"]
+            user.last_name = self.cleaned_data["last_name"]
+            user.email = self.cleaned_data["email"]
+            user.save()
+            profile.save()
+
+        return profile

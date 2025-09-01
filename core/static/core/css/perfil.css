@@ -1,0 +1,840 @@
+/* ==========================================================================
+   PERFIL PAGE - Estilos específicos da página de perfil
+   ========================================================================== */
+
+/* CSS Variables */
+:root {
+    --dark-bg: #212529;
+    --darker-bg: #1a1d20;
+    --light-text: #ffffff;
+    --gold: #ffc107;
+    --secondary-gold: #ffb300;
+    --success: #22c55e;
+    --danger: #ef4444;
+}
+
+/* Hero section styles */
+.perfil-hero-section {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, var(--darker-bg) 100%);
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+    margin-left: 80px;
+    /* Espaço para a navbar lateral */
+}
+
+.hero-background-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--gold), var(--secondary-gold));
+    opacity: 0.03;
+    animation: floatAnimation 15s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 150px;
+    height: 150px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 3s;
+}
+
+.shape-3 {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 6s;
+}
+
+.shape-4 {
+    width: 80px;
+    height: 80px;
+    top: 30%;
+    right: 30%;
+    animation-delay: 9s;
+}
+
+@keyframes floatAnimation {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.03;
+    }
+
+    25% {
+        transform: translateY(-30px) rotate(90deg);
+        opacity: 0.06;
+    }
+
+    50% {
+        transform: translateY(-60px) rotate(180deg);
+        opacity: 0.03;
+    }
+
+    75% {
+        transform: translateY(-30px) rotate(270deg);
+        opacity: 0.06;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: rgba(255, 193, 7, 0.1);
+    border: 2px solid var(--gold);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--light-text);
+    line-height: 1.2;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--secondary-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.floating-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 193, 7, 0.1);
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 1.5rem;
+    animation: floatIcon 8s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes floatIcon {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Profile Section */
+.profile-section {
+    padding: 80px 0;
+    background: var(--dark-bg);
+    margin-left: 80px;
+    /* Espaço para a navbar lateral */
+}
+
+/* Profile Card */
+.profile-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 193, 7, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.profile-card:hover::before {
+    left: 100%;
+}
+
+.profile-avatar {
+    position: relative;
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.avatar-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--secondary-gold) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: var(--dark-bg);
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: var(--success);
+    border-radius: 50%;
+    border: 3px solid var(--dark-bg);
+}
+
+.profile-info {
+    margin-bottom: 2rem;
+}
+
+.profile-name {
+    color: var(--light-text);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.profile-email {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.profile-badge {
+    display: inline-block;
+    background: rgba(255, 193, 7, 0.1);
+    color: var(--gold);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: 1px solid var(--gold);
+}
+
+.profile-actions .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+/* Profile Content */
+.profile-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Profile Tabs */
+.profile-tabs {
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0;
+}
+
+.profile-tabs .nav-link {
+    color: rgba(255, 255, 255, 0.7);
+    background: transparent;
+    border: none;
+    padding: 1rem 1.5rem;
+    transition: all 0.3s ease;
+    border-radius: 0;
+}
+
+.profile-tabs .nav-link:hover {
+    color: var(--gold);
+    background: rgba(255, 193, 7, 0.05);
+}
+
+.profile-tabs .nav-link.active {
+    color: var(--gold);
+    background: rgba(255, 193, 7, 0.1);
+    border-bottom: 3px solid var(--gold);
+}
+
+.profile-tab-content {
+    padding: 2rem;
+}
+
+/* Overview Content */
+.overview-content {
+    color: var(--light-text);
+}
+
+.overview-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.overview-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.overview-card .card-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--secondary-gold) 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--dark-bg);
+    margin-bottom: 1rem;
+}
+
+.overview-card h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.overview-card p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    background: rgba(255, 255, 255, 0.1);
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--secondary-gold) 100%);
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.achievements {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.achievement-badge {
+    font-size: 1.5rem;
+}
+
+/* Recent Activity */
+.recent-activity {
+    margin-top: 3rem;
+}
+
+.section-title {
+    color: var(--light-text);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--gold);
+    padding-left: 1rem;
+}
+
+.activity-list {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 193, 7, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.activity-content h6 {
+    color: var(--light-text);
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+.activity-content p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.activity-content small {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+}
+
+/* Courses Content */
+.courses-content {
+    color: var(--light-text);
+}
+
+.courses-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-buttons .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.filter-buttons .btn.active {
+    background: var(--gold);
+    color: var(--dark-bg);
+    border-color: var(--gold);
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.course-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.course-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.course-progress {
+    flex-shrink: 0;
+}
+
+.progress-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--gold);
+}
+
+.progress-circle.completed {
+    background: var(--success);
+    color: white;
+}
+
+.course-content {
+    flex: 1;
+}
+
+.course-content h6 {
+    color: var(--light-text);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.course-content p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+}
+
+.course-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.course-content .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Certificates Content */
+.certificates-content {
+    color: var(--light-text);
+}
+
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.certificate-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.certificate-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.certificate-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--secondary-gold) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--dark-bg);
+    margin: 0 auto 1rem;
+}
+
+.certificate-content h6 {
+    color: var(--light-text);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.certificate-content p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.certificate-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.certificate-actions .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Settings Content */
+.settings-content {
+    color: var(--light-text);
+}
+
+.settings-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.settings-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.settings-section h6 {
+    color: var(--light-text);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-info {
+    flex: 1;
+}
+
+.setting-info strong {
+    color: var(--light-text);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.setting-info p {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.form-check-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-check-input:checked {
+    background-color: var(--gold);
+    border-color: var(--gold);
+}
+
+.form-check-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+/* Modal Styles */
+.modal-content.bg-dark {
+    background: var(--dark-bg) !important;
+}
+
+.modal-content .input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.modal-content .form-control {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.75rem 3rem 0.75rem 3.5rem;
+    color: var(--light-text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    height: auto;
+    min-height: 50px;
+}
+
+.modal-content .form-control:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+    outline: none;
+}
+
+.modal-content .form-control::placeholder {
+    color: transparent;
+}
+
+.modal-content .floating-label {
+    position: absolute;
+    top: 50%;
+    left: 3.5rem;
+    transform: translateY(-50%);
+    background: transparent;
+    padding: 0 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.modal-content .floating-label.active,
+.modal-content .input-group .form-control:focus+.floating-label,
+.modal-content .input-group .form-control:not(:placeholder-shown)+.floating-label {
+    top: 0;
+    font-size: 0.8rem;
+    color: var(--gold);
+    background: var(--dark-bg);
+    padding: 0 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .perfil-hero-section {
+        margin-left: 0;
+        /* Remove margin em mobile */
+        padding: 80px 0 60px;
+        /* Reduz padding top em mobile */
+    }
+
+    .profile-section {
+        margin-left: 0;
+        /* Remove margin em mobile */
+        padding: 40px 0;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-stats {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 1.2rem;
+    }
+
+    .floating-icon {
+        display: none;
+    }
+
+    .profile-section {
+        padding: 40px 0;
+    }
+
+    .courses-filter {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .courses-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certificates-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .certificate-actions {
+        flex-direction: column;
+    }
+
+    .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .profile-tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .profile-tabs .nav-link {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .overview-card {
+        margin-bottom: 1rem;
+    }
+
+    .course-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .course-meta {
+        justify-content: center;
+    }
+
+    .profile-tab-content {
+        padding: 1rem;
+    }
+}
