@@ -229,15 +229,14 @@
 
                                         <div class="form-checks">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
-                                                <label class="form-check-label" for="terms">
-                                                    Concordo com os <a href="#" class="text-warning">Termos de Uso</a>
-                                                    e <a href="#" class="text-warning">Política de Privacidade</a> *
+                                                {{ form.terms }}
+                                                <label class="form-check-label" for="{{ form.terms.id_for_label }}">
+                                                    Concordo com os termos de uso e política de privacidade
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter" checked>
-                                                <label class="form-check-label" for="newsletter">
+                                                {{ form.newsletter }}
+                                                <label class="form-check-label" for="{{ form.newsletter.id_for_label }}">
                                                     Quero receber dicas exclusivas e novidades por email
                                                 </label>
                                             </div>
@@ -352,6 +351,25 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Prevenir erro de "invalid form control not focusable"
+        document.addEventListener('invalid', function(e) {
+            const field = e.target;
+            
+            // Se o campo está oculto, tentar mostrar o step correto
+            if (field.offsetParent === null) {
+                e.preventDefault(); // Prevenir a mensagem de erro padrão
+                
+                // Verificar se é o checkbox dos termos
+                if (field.id === 'id_terms') {
+                    showStep(2); // Ir para o step 2
+                    setTimeout(() => {
+                        // Focar no campo após a transição
+                        field.focus();
+                    }, 300);
+                }
+            }
+        }, true);
+
         // Multi-step form functionality
         let currentStep = 1;
         const totalSteps = 2; // Reduzido para 2 etapas
@@ -397,15 +415,29 @@
         // Form validation for each step
         function validateStep(step) {
             const currentStepElement = document.querySelector(`[data-step="${step}"]`);
+            if (!currentStepElement) return false;
+            
             const requiredFields = currentStepElement.querySelectorAll('[required]');
             let isValid = true;
 
             requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.classList.add('is-invalid');
-                    isValid = false;
-                } else {
-                    field.classList.remove('is-invalid');
+                // Só validar campos que estão visíveis
+                if (field.offsetParent !== null) {
+                    if (field.type === 'checkbox') {
+                        if (!field.checked) {
+                            field.classList.add('is-invalid');
+                            isValid = false;
+                        } else {
+                            field.classList.remove('is-invalid');
+                        }
+                    } else {
+                        if (!field.value.trim()) {
+                            field.classList.add('is-invalid');
+                            isValid = false;
+                        } else {
+                            field.classList.remove('is-invalid');
+                        }
+                    }
                 }
             });
 
@@ -425,6 +457,11 @@
                     showToast('A senha deve ter pelo menos 6 caracteres!', 'error');
                     isValid = false;
                 }
+            }
+
+            // Additional validation for step 2
+            if (step === 2) {
+                // Sem validação adicional necessária no step 2 por enquanto
             }
 
             return isValid;
@@ -517,18 +554,19 @@
 
         // Form submission - agora envia para Django
         document.getElementById('registrationForm').addEventListener('submit', function (e) {
-            if (!validateStep(2)) {
+            console.log('Form submission attempt, current step:', currentStep);
+            
+            // Se não estamos no step 2, vamos para lá automaticamente
+            if (currentStep !== 2) {
+                console.log('Not on step 2, moving to step 2 first');
+                showStep(2);
+                // Não prevenir o submit aqui - deixar o usuário reenviar
                 e.preventDefault();
+                showToast('Agora clique novamente em "Criar Minha Conta" para finalizar!', 'info');
                 return;
             }
             
-            // Verificar checkbox obrigatório
-            const termsCheckbox = document.getElementById('terms');
-            if (!termsCheckbox.checked) {
-                e.preventDefault();
-                showToast('Você deve aceitar os termos de uso!', 'error');
-                return;
-            }
+            console.log('Submitting form to Django...');
 
             // Mostrar loading no botão
             const btn = document.getElementById('submitBtn');
@@ -591,6 +629,8 @@
             });
         });
     </script>
+
+    {% include 'core/footer.html' %}
 </body>
 
 </html>

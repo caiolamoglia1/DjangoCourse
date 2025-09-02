@@ -511,6 +511,17 @@
     box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
 }
 
+/* Invalid checkbox styling */
+.form-check-input.is-invalid,
+.form-check-input.is-invalid:checked {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
+.form-check.has-error .form-check-label {
+    color: #ef4444;
+}
+
 .error-message {
     color: #ef4444;
     font-size: 0.8rem;

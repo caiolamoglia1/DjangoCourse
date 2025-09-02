@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste de Cadastro</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { width: 300px; padding: 8px; margin-bottom: 10px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Teste de Cadastro Django</h1>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{% if message.tags == 'error' %}error{% else %}success{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label>Nome:</label>
+            {{ form.first_name }}
+        </div>
+        
+        <div class="form-group">
+            <label>Sobrenome:</label>
+            {{ form.last_name }}
+        </div>
+        
+        <div class="form-group">
+            <label>Email:</label>
+            {{ form.email }}
+        </div>
+        
+        <div class="form-group">
+            <label>Nome de usuário:</label>
+            {{ form.username }}
+        </div>
+        
+        <div class="form-group">
+            <label>Senha:</label>
+            {{ form.password }}
+        </div>
+        
+        <div class="form-group">
+            <label>Confirmar senha:</label>
+            {{ form.password_confirm }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.terms }} 
+            <label for="{{ form.terms.id_for_label }}" style="display: inline;">Aceito os termos</label>
+        </div>
+        
+        <div class="form-group">
+            {{ form.newsletter }} 
+            <label for="{{ form.newsletter.id_for_label }}" style="display: inline;">Quero receber newsletter</label>
+        </div>
+        
+        <button type="submit">Criar Conta</button>
+    </form>
+    
+    <p><a href="/login/">Já tem conta? Faça login</a></p>
+</body>
+</html>

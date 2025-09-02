@@ -81,6 +81,28 @@ class CustomUserRegistrationForm(forms.ModelForm):
         label="Confirmar Senha",
         required=True,
     )
+    terms = forms.BooleanField(
+        required=False,  # Removendo obrigatoriedade até criarmos as páginas
+        widget=forms.CheckboxInput(
+            attrs={
+                "class": "form-check-input",
+                "id": "terms",
+            }
+        ),
+        label="Aceito os Termos de Uso e Política de Privacidade",
+        initial=True,  # Marcar por padrão
+    )
+    newsletter = forms.BooleanField(
+        required=False,
+        initial=True,
+        widget=forms.CheckboxInput(
+            attrs={
+                "class": "form-check-input",
+                "id": "newsletter",
+            }
+        ),
+        label="Quero receber dicas exclusivas e novidades por email",
+    )
 
     class Meta:
         model = User
@@ -199,17 +221,36 @@ class UserProfileForm(forms.ModelForm):
     )
 
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": " "}), label="Email"
+        widget=forms.EmailInput(attrs={"class": "form-control", "placeholder": " "}), 
+        label="Email"
+    )
+
+    phone = forms.CharField(
+        max_length=20,
+        required=False,
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": " "}),
+        label="Telefone",
+    )
+
+    birth_date = forms.DateField(
+        required=False,
+        widget=forms.DateInput(attrs={"class": "form-control", "type": "date", "placeholder": " "}),
+        label="Data de Nascimento",
     )
 
     class Meta:
         model = UserProfile
-        fields = ["bio", "location"]
+        fields = ["bio", "location", "birth_date"]
         widgets = {
             "bio": forms.Textarea(attrs={"class": "form-control", "rows": 4, "placeholder": " "}),
             "location": forms.TextInput(attrs={"class": "form-control", "placeholder": " "}),
+            "birth_date": forms.DateInput(attrs={"class": "form-control", "type": "date", "placeholder": " "}),
         }
-        labels = {"bio": "Biografia", "location": "Localização"}
+        labels = {
+            "bio": "Biografia", 
+            "location": "Localização",
+            "birth_date": "Data de Nascimento",
+        }
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop("user", None)
@@ -219,6 +260,10 @@ class UserProfileForm(forms.ModelForm):
             self.fields["first_name"].initial = user.first_name
             self.fields["last_name"].initial = user.last_name
             self.fields["email"].initial = user.email
+            
+            # Se há uma instância (profile), preencher os campos
+            if self.instance and self.instance.pk:
+                self.fields["birth_date"].initial = self.instance.birth_date
 
     def save(self, commit=True):
         profile = super().save(commit=False)
@@ -230,6 +275,9 @@ class UserProfileForm(forms.ModelForm):
             user.last_name = self.cleaned_data["last_name"]
             user.email = self.cleaned_data["email"]
             user.save()
+            
+            # Salvar os dados do perfil
+            profile.birth_date = self.cleaned_data["birth_date"]
             profile.save()
 
         return profile

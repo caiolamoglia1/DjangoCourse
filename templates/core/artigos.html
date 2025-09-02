@@ -134,39 +134,76 @@
         <section class="featured-article-section">
             <div class="container">
                 <div class="featured-article">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6">
-                            <div class="featured-content">
-                                <div class="featured-badge">
-                                    <i class="fas fa-star"></i>
-                                    <span>Artigo em Destaque</span>
-                                </div>
-                                <h3>Quem controla a inteligência artificial? O poder dos dados e o domínio das big techs
-                                </h3>
-                                <p>Uma análise profunda sobre como as grandes empresas de tecnologia estão moldando o
-                                    futuro da IA através do controle de dados e infraestrutura.</p>
-                                <div class="featured-meta">
-                                    <span class="source">
-                                        <i class="fas fa-external-link-alt"></i>
-                                        cadenaser.com
-                                    </span>
-                                    <span class="reading-time">
-                                        <i class="fas fa-clock"></i>
-                                        8 min de leitura
-                                    </span>
-                                </div>
-                                <a href="https://cadenaser.com" target="_blank" rel="noopener noreferrer"
-                                    class="btn btn-primary">
-                                    <i class="fas fa-arrow-right"></i> Ler Artigo Completo
-                                </a>
+                    <div class="featured-article-grid">
+                        <div class="featured-content">
+                            <div class="featured-badge">
+                                <i class="fas fa-star"></i>
+                                <span>Artigo em Destaque</span>
+                            </div>
+                            <h3 class="featured-title">Quem controla a inteligência artificial?</h3>
+                            <p class="featured-subtitle">O poder dos dados e o domínio das big techs</p>
+                        </div>
+                        
+                        <div class="featured-content-area">
+                            <div class="featured-text">
+                                <p>Uma análise profunda sobre como as grandes empresas de tecnologia estão moldando o futuro da IA através do controle de dados e infraestrutura. Exploramos os impactos sociais, econômicos e éticos dessa concentração de poder tecnológico.</p>
+                            </div>
+                            
+                            <div class="featured-text">
+                                <p>Este artigo examina como gigantes como Google, Amazon, Microsoft e Meta dominam o cenário da inteligência artificial, controlando desde os dados de treinamento até a infraestrutura de nuvem necessária para desenvolver modelos avançados.</p>
+                            </div>
+                            
+                            <div class="featured-text">
+                                <p>Entenda as implicações dessa concentração de poder e como ela pode influenciar o desenvolvimento futuro da tecnologia que está reshaping nossa sociedade digital.</p>
                             </div>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="featured-visual">
-                                <div class="featured-image">
+                        
+                        <div class="featured-visual">
+                            <div class="featured-image">
+                                <div class="image-overlay">
                                     <i class="fas fa-brain"></i>
+                                    <div class="image-tags">
+                                        <span class="tag">IA</span>
+                                        <span class="tag">Big Tech</span>
+                                        <span class="tag">Dados</span>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <div class="visual-stats">
+                                <div class="visual-stat">
+                                    <i class="fas fa-eye"></i>
+                                    <div class="stat-number">2.1K</div>
+                                    <div class="stat-label">Visualizações</div>
+                                </div>
+                                <div class="visual-stat">
+                                    <i class="fas fa-clock"></i>
+                                    <div class="stat-number">8 min</div>
+                                    <div class="stat-label">Leitura</div>
+                                </div>
+                                <div class="visual-stat">
+                                    <i class="fas fa-thumbs-up"></i>
+                                    <div class="stat-number">95%</div>
+                                    <div class="stat-label">Aprovação</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="featured-footer">
+                            <div class="featured-meta">
+                                <span class="source">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    cadenaser.com
+                                </span>
+                                <span class="publication-date">
+                                    <i class="fas fa-calendar"></i>
+                                    31 Agosto 2025
+                                </span>
+                            </div>
+                            <a href="https://cadenaser.com" target="_blank" rel="noopener noreferrer"
+                                class="btn btn-primary btn-read-featured">
+                                <i class="fas fa-arrow-right"></i> Ler Artigo Completo
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -530,6 +567,8 @@
             }
         });
     </script>
+
+    {% include 'core/footer.html' %}
 </body>
 
 </html>

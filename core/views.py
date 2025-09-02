@@ -45,9 +45,12 @@ def cadastro(request):
     form = CustomUserRegistrationForm()
 
     if request.method == "POST":
+        print("POST request received for cadastro")  # Debug
         form = CustomUserRegistrationForm(request.POST)
+        print(f"Form data: {request.POST}")  # Debug
 
         if form.is_valid():
+            print("Form is valid, attempting to save...")  # Debug
             try:
                 with transaction.atomic():
                     # Validar senha
@@ -55,7 +58,8 @@ def cadastro(request):
                     validate_password(password)
 
                     # Criar usuário
-                    form.save()
+                    user = form.save()
+                    print(f"User created successfully: {user.username}")  # Debug
 
                     messages.success(
                         request,
@@ -66,10 +70,13 @@ def cadastro(request):
                     return redirect("login")
 
             except ValidationError as e:
+                print(f"Password validation error: {e}")  # Debug
                 messages.error(request, f'Erro na senha: {", ".join(e.messages)}')
-            except Exception:
+            except Exception as e:
+                print(f"Exception during user creation: {e}")  # Debug
                 messages.error(request, "Erro ao criar conta. Tente novamente.")
         else:
+            print(f"Form is invalid. Errors: {form.errors}")  # Debug
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.error(request, f"{form.fields[field].label}: {error}")
@@ -79,6 +86,56 @@ def cadastro(request):
         "show_login_link": True,
     }
     return render(request, "core/cadastro.html", context)
+
+
+# Página cadastro simples (para teste)
+def cadastro_simples(request):
+    if request.user.is_authenticated:
+        return redirect("home")
+
+    form = CustomUserRegistrationForm()
+
+    if request.method == "POST":
+        print("POST request received for cadastro_simples")  # Debug
+        form = CustomUserRegistrationForm(request.POST)
+        print(f"Form data: {request.POST}")  # Debug
+
+        if form.is_valid():
+            print("Form is valid, attempting to save...")  # Debug
+            try:
+                with transaction.atomic():
+                    # Validar senha
+                    password = form.cleaned_data["password"]
+                    validate_password(password)
+
+                    # Criar usuário
+                    user = form.save()
+                    print(f"User created successfully: {user.username}")  # Debug
+
+                    messages.success(
+                        request,
+                        "Conta criada com sucesso! Agora faça login para continuar.",
+                    )
+
+                    # Redirecionar para login
+                    return redirect("login")
+
+            except ValidationError as e:
+                print(f"Password validation error: {e}")  # Debug
+                messages.error(request, f'Erro na senha: {", ".join(e.messages)}')
+            except Exception as e:
+                print(f"Exception during user creation: {e}")  # Debug
+                messages.error(request, "Erro ao criar conta. Tente novamente.")
+        else:
+            print(f"Form is invalid. Errors: {form.errors}")  # Debug
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{form.fields[field].label}: {error}")
+
+    context = {
+        "form": form,
+    }
+    return render(request, "core/cadastro_simples.html", context)
 
 
 # Página de login melhorada
@@ -151,7 +208,22 @@ def perfil(request):
                 avatar_form.save()
                 print(f"🖼️ Old avatar: {old_avatar}")
                 print(f"🖼️ New avatar: {profile.avatar}")
-                messages.success(request, "Avatar atualizado com sucesso!")
+                
+                # Se também há profile_update, processa o perfil também
+                if "profile_update" in request.POST:
+                    print("🔄 ALSO PROCESSING PROFILE UPDATE")
+                    profile_form = UserProfileForm(request.POST, instance=profile, user=request.user)
+                    if profile_form.is_valid():
+                        profile_form.save()
+                        messages.success(request, "Perfil e avatar atualizados com sucesso!")
+                    else:
+                        messages.success(request, "Avatar atualizado com sucesso!")
+                        for field, errors in profile_form.errors.items():
+                            for error in errors:
+                                messages.error(request, f"{profile_form.fields[field].label}: {error}")
+                else:
+                    messages.success(request, "Avatar atualizado com sucesso!")
+                
                 return redirect("perfil")
             else:
                 print(f"❌ Avatar form errors: {avatar_form.errors}")
@@ -161,16 +233,22 @@ def perfil(request):
                     messages.error(request, avatar_form.errors["avatar"][0])
 
         elif "profile_update" in request.POST:
-            print("Processing profile update...")
+            print("🔄 PROCESSING PROFILE UPDATE")
+            print(f"📝 Profile instance: {profile}")
+            print(f"👤 User: {request.user}")
             profile_form = UserProfileForm(request.POST, instance=profile, user=request.user)
-            print(f"Profile form is valid: {profile_form.is_valid()}")
+            print(f"✅ Profile form is valid: {profile_form.is_valid()}")
+            
+            if not profile_form.is_valid():
+                print(f"❌ Profile form errors: {profile_form.errors}")
 
             if profile_form.is_valid():
-                profile_form.save()
+                saved_profile = profile_form.save()
+                print(f"💾 Profile saved: {saved_profile}")
                 messages.success(request, "Perfil atualizado com sucesso!")
                 return redirect("perfil")
             else:
-                print(f"Profile form errors: {profile_form.errors}")
+                print(f"❌ Profile form errors: {profile_form.errors}")
                 for field, errors in profile_form.errors.items():
                     for error in errors:
                         messages.error(request, f"{profile_form.fields[field].label}: {error}")

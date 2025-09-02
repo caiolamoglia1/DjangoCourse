@@ -122,37 +122,6 @@
                                     <i class="fas fa-edit me-2"></i>
                                     Editar Perfil
                                 </button>
-                                <!-- Avatar Upload Form -->
-                                <div class="mt-3">
-                                    <form method="post" enctype="multipart/form-data" class="avatar-upload-form" 
-                                          style="background: rgba(255, 193, 7, 0.1); border: 2px solid #ffc107; border-radius: 12px; padding: 20px;">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="avatar_upload" value="1">
-                                        
-                                        <div class="mb-3">
-                                            <label for="avatar_input" class="form-label text-light fw-bold">
-                                                <i class="fas fa-camera me-2" style="color: #ffc107;"></i>
-                                                Alterar Foto do Perfil
-                                            </label>
-                                            <input type="file" 
-                                                   class="form-control" 
-                                                   id="avatar_input" 
-                                                   name="avatar" 
-                                                   accept="image/*" 
-                                                   required
-                                                   style="border: 1px solid #ffc107; background: rgba(255, 255, 255, 0.1);">
-                                            <div class="form-text text-muted mt-2">
-                                                <small><i class="fas fa-info-circle me-1"></i>Formatos aceitos: JPG, PNG, GIF. Tamanho máximo: 5MB.</small>
-                                            </div>
-                                        </div>
-                                        
-                                        <button type="submit" class="btn btn-warning fw-bold" 
-                                                style="box-shadow: 0 4px 8px rgba(255, 193, 7, 0.3);">
-                                            <i class="fas fa-upload me-2"></i>
-                                            Atualizar Foto
-                                        </button>
-                                    </form>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -500,10 +469,40 @@
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="modal-body">
+                        <!-- Avatar Upload Section -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="avatar-upload-section" style="background: rgba(255, 193, 7, 0.1); border: 2px solid #ffc107; border-radius: 12px; padding: 20px;">
+                                    <h6 class="text-light fw-bold mb-3">
+                                        <i class="fas fa-camera me-2" style="color: #ffc107;"></i>
+                                        Alterar Foto do Perfil
+                                    </h6>
+                                    <div class="mb-3">
+                                        <input type="file" 
+                                               class="form-control" 
+                                               id="avatar_input_modal" 
+                                               name="avatar" 
+                                               accept="image/*"
+                                               style="border: 1px solid #ffc107; background: rgba(255, 255, 255, 0.1);">
+                                        <div class="form-text text-muted mt-2">
+                                            <small><i class="fas fa-info-circle me-1"></i>Formatos aceitos: JPG, PNG, GIF. Tamanho máximo: 5MB.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Profile Information Section -->
                         <div class="row">
+                            <div class="col-12 mb-3">
+                                <h6 class="text-light fw-bold mb-3">
+                                    <i class="fas fa-user me-2" style="color: #ffc107;"></i>
+                                    Informações Pessoais
+                                </h6>
+                            </div>
                             <div class="col-md-6 mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text bg-dark text-warning border-warning">
@@ -540,16 +539,7 @@
                                     <label class="floating-label">Bio</label>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <div class="input-group">
-                                    <span class="input-group-text bg-dark text-warning border-warning">
-                                        <i class="fas fa-phone"></i>
-                                    </span>
-                                    {{ profile_form.phone }}
-                                    <label class="floating-label">Telefone</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-3">
+                            <div class="col-12 mb-3">
                                 <div class="input-group">
                                     <span class="input-group-text bg-dark text-warning border-warning">
                                         <i class="fas fa-calendar"></i>
@@ -575,6 +565,7 @@
                             <i class="fas fa-save me-2"></i>
                             Salvar Alterações
                         </button>
+                        <input type="hidden" name="avatar_upload" value="1">
                     </div>
                 </form>
             </div>
@@ -591,17 +582,25 @@
             // PROFILE PAGE INTERACTIONS
             // ==========================================
 
-            // Avatar Preview for main form
-            const avatarInput = document.querySelector('input[name="avatar"]');
-            if (avatarInput) {
-                avatarInput.addEventListener('change', function (e) {
-                    const file = e.target.files[0];
-                    if (file) {
-                        console.log('Avatar file selected:', file.name);
-                        // Você pode adicionar preview aqui se quiser
-                    }
-                });
-            }
+            // Avatar Preview for main form and modal
+            const avatarInputs = document.querySelectorAll('input[name="avatar"]');
+            avatarInputs.forEach(avatarInput => {
+                if (avatarInput) {
+                    avatarInput.addEventListener('change', function (e) {
+                        const file = e.target.files[0];
+                        if (file) {
+                            console.log('Avatar file selected:', file.name);
+                            // Preview da imagem (opcional)
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                console.log('Image loaded for preview');
+                                // Aqui você pode adicionar lógica para mostrar preview
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                }
+            });
 
             // Floating Labels Animation
             const inputs = document.querySelectorAll('.form-control');
@@ -781,6 +780,8 @@
             });
         });
     </script>
+
+    {% include 'core/footer.html' %}
 </body>
 
 </html>
